@@ -1,0 +1,18 @@
+.header {
+  width: 100vw;
+  background: #5c84f7;
+}
+
+.header nav {
+  max-width: 200rem;
+  margin: 0 auto;
+  height: 7.4vh;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo__img {
+  width: 5.6rem;
+}

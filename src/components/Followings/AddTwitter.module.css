@@ -1,0 +1,51 @@
+.add__followings {
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.add__followings input {
+  height: 3.8rem;
+  width: 99%;
+  padding: 0 2rem;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 3rem;
+  outline: none;
+}
+
+::placeholder {
+  color: #9a9a9a;
+}
+
+.add__followings input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.add__followings input:focus:-moz-placeholder {
+  color: transparent;
+} /* FireFox 4-18 */
+.add__followings input:focus::-moz-placeholder {
+  color: transparent;
+} /* FireFox 19+ */
+.add__followings input:focus:-ms-input-placeholder {
+  color: transparent;
+} /* Internet Explorer 10+ */
+
+.btn__add {
+  height: 3.8rem;
+  width: 25%;
+  background-color: #5c84f7;
+  color: #fff;
+  border: none;
+  border-radius: 3rem;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn__add:hover,
+.btn__add:active {
+  background-color: #4572f2;
+}

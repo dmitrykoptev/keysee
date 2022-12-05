@@ -1,0 +1,7 @@
+.followings {
+  padding: 0.6rem 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  list-style: none;
+}

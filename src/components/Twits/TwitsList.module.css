@@ -1,0 +1,7 @@
+.twits__list {
+  list-style: none;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+}

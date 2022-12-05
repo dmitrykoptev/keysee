@@ -1,0 +1,38 @@
+.twit_post {
+  padding: 1rem 1.4rem 1rem 0.2rem;
+  display: flex;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.user__avatar {
+  width: 4.5rem;
+}
+
+.twit__text_content {
+  margin-left: 0.6rem;
+  padding: 0.2rem 0;
+}
+
+.twit__post_info {
+  display: flex;
+  column-gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.twitter__name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #343a40;
+}
+
+.twitter__handle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #9a9a9a;
+}
+
+.twit__post_content {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #151515;
+}
