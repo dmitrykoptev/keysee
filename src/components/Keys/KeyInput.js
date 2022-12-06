@@ -12,9 +12,9 @@ const KeyInput = () => {
     event.preventDefault();
 
     const keyId = Math.trunc(Math.random() * 1000);
-    const keyContent = inputEl.current.value;
-    if (keyContent.trim() !== "") {
-      dispatch(keysAction.addKey({ id: keyId, title: keyContent }));
+    const inputValue = inputEl.current.value;
+    if (inputValue.trim() !== "") {
+      dispatch(keysAction.addKey({ id: keyId, title: inputValue.trim() }));
     } else {
       console.log("Хуйню ввел!");
     }

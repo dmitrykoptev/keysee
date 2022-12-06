@@ -5,3 +5,14 @@
   flex-direction: column;
   row-gap: 0.4rem;
 }
+
+.noAccounts {
+  font-size: 1.6rem;
+  color: #9a9a9a;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ВЫРОВНЯТЬ БЛОки */

@@ -20,6 +20,7 @@ const keysSlice = createSlice({
         id: newItem.id,
         title: newItem.title,
       });
+      console.log(state.items);
     },
     removeKey(state, action) {
       const id = action.payload;

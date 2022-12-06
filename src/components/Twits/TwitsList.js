@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classes from "./TwitsList.module.css";
 import Content from "../Layout/Content";
 import TwitterPost from "./TwitterPost";
 
 const TwitsList = () => {
+  let noTwits = false;
+
   return (
     <Content>
-      <ul className={classes.twits__list}>
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-        <TwitterPost />
-      </ul>
+      {noTwits ? (
+        <ul className={classes.twits__list}>
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+          <TwitterPost />
+        </ul>
+      ) : (
+        <p className={classes.noAccounts}>Please add twitter acounts.</p>
+      )}
     </Content>
   );
 };

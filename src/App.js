@@ -5,16 +5,20 @@ import MainHeader from "./components/Header/MainHeader";
 import FollowingsSection from "./components/Followings/FollowingsSection";
 import TwitsSection from "./components/Twits/TwitsSection";
 import KeySection from "./components/Keys/KeySection";
-import { sendKeysData, fetchKeysData } from "./store/keys-actions";
 import Notification from "./components/Notification/Notification";
+import { sendKeysData, fetchKeysData } from "./store/keys-actions";
+import { sendAccountsData, fetchAccountsData } from "./store/accounts-actions";
 
 let isInitial = true;
 
 const App = () => {
   const dispatch = useDispatch();
-  const keyList = useSelector((state) => state.keyList);
   const notification = useSelector((state) => state.notification.notification);
 
+  const keyList = useSelector((state) => state.keyList);
+  const accountsList = useSelector((state) => state.accountsList);
+
+  // *** KEYS ***
   useEffect(() => {
     dispatch(fetchKeysData());
   }, [dispatch]);
@@ -28,6 +32,21 @@ const App = () => {
       dispatch(sendKeysData(keyList));
     }
   }, [keyList, dispatch]);
+
+  // *** ACCOUNTS ***
+  useEffect(() => {
+    dispatch(fetchAccountsData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+    if (accountsList.changed) {
+      dispatch(sendAccountsData(accountsList));
+    }
+  }, [accountsList, dispatch]);
 
   return (
     <>

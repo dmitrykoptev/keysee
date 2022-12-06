@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import classes from "./KeysList.module.css";
 import Key from "./Key";
 
-const KeysList = () => {
-  const keys = useSelector((state) => state.keyList.items);
+const KeysList = (props) => {
+  const keys = props.keys;
 
   return (
     <ul className={classes.keys__list}>

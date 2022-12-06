@@ -7,7 +7,7 @@ export const sendKeysData = (keyList) => {
       notificationActions.showNotification({
         status: "pending",
         title: "Sending...",
-        message: "Sending cart data!",
+        message: "Sending key data",
       })
     );
     const sendRequest = async () => {
@@ -26,12 +26,12 @@ export const sendKeysData = (keyList) => {
         notificationActions.showNotification({
           status: "success",
           title: "Success!",
-          message: "Sent cart data successfully!",
+          message: "Sent key data successfully!",
         })
       );
       setTimeout(() => {
         dispatch(notificationActions.hideNotification());
-      }, 2000);
+      }, 1500);
     } catch (error) {
       dispatch(
         notificationActions.showNotification({
@@ -42,7 +42,7 @@ export const sendKeysData = (keyList) => {
       );
       setTimeout(() => {
         dispatch(notificationActions.hideNotification());
-      }, 2000);
+      }, 1500);
     }
   };
 };
@@ -73,7 +73,7 @@ export const fetchKeysData = () => {
         notificationActions.showNotification({
           status: "error",
           title: "Error!",
-          message: "Fetching data failed!",
+          message: "Fetching keys failed!",
         })
       );
     }

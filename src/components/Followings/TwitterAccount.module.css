@@ -30,4 +30,12 @@
   font-size: 1.4rem;
   font-weight: 400;
   color: #9a9a9a;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.twitter__handle:hover {
+  border-radius: 3rem;
+  box-shadow: 0 0 4px 2px #e1e1e1;
 }
