@@ -1,69 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import MainHeader from "./components/Header/MainHeader";
-import FollowingsSection from "./components/Followings/FollowingsSection";
-import TwitsSection from "./components/Twits/TwitsSection";
-import KeySection from "./components/Keys/KeySection";
-import Notification from "./components/Notification/Notification";
-import { sendKeysData, fetchKeysData } from "./store/keys-actions";
-import { sendAccountsData, fetchAccountsData } from "./store/accounts-actions";
-
-let isInitial = true;
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const notification = useSelector((state) => state.notification.notification);
-
-  const keyList = useSelector((state) => state.keyList);
-  const accountsList = useSelector((state) => state.accountsList);
-
-  // *** KEYS ***
-  useEffect(() => {
-    dispatch(fetchKeysData());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isInitial) {
-      isInitial = false;
-      return;
-    }
-    if (keyList.changed) {
-      dispatch(sendKeysData(keyList));
-    }
-  }, [keyList, dispatch]);
-
-  // *** ACCOUNTS ***
-  useEffect(() => {
-    dispatch(fetchAccountsData());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isInitial) {
-      isInitial = false;
-      return;
-    }
-    if (accountsList.changed) {
-      dispatch(sendAccountsData(accountsList));
-    }
-  }, [accountsList, dispatch]);
-
   return (
-    <>
-      {notification && (
-        <Notification
-          status={notification.status}
-          title={notification.title}
-          message={notification.message}
-        />
-      )}
-      <MainHeader />
-      <main>
-        <FollowingsSection />
-        <TwitsSection />
-        <KeySection />
-      </main>
-    </>
+    <Switch>
+      <Route path="/" exact>
+        <LoginPage />
+      </Route>
+      <Route path="/main">
+        <MainPage />
+      </Route>
+    </Switch>
   );
 };
 
