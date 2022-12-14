@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./TwitsList.module.css";
 import Content from "../Layout/Content";
@@ -11,21 +11,6 @@ const TwitsList = () => {
     <Content>
       {noTwits ? (
         <ul className={classes.twits__list}>
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
-          <TwitterPost />
           <TwitterPost />
         </ul>
       ) : (

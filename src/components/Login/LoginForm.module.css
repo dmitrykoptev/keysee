@@ -70,6 +70,30 @@
   color: #9a9a9a;
 }
 
+.passwordInput {
+  position: relative;
+}
+
+.seePassword {
+  background: url(../../icons/closedEye.svg) no-repeat center;
+  opacity: 0.5;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  right: 1.4rem;
+  bottom: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.seeText {
+  background: url(../../icons/openedEye.svg) no-repeat center !important;
+}
+
+.seePassword:hover {
+  opacity: 1;
+}
+
 .wrongCredentials {
   border: 1px solid #fa324b;
   color: #fa324b;
@@ -94,16 +118,24 @@
 
 .stayLoggedIn {
   display: flex;
+  align-items: center;
   column-gap: 0.4rem;
-  margin-bottom: 2rem;
   margin-left: 1.4rem;
   font-size: 1.2rem;
   font-weight: 500;
 }
 
 .checkBox {
-  margin-right: 0.4rem;
+  background: url(../../icons/checkBox.svg) no-repeat center;
+  width: 1.4rem;
+  height: 1.4rem;
   cursor: pointer;
+}
+
+.checkedBox {
+  background: url(../../icons/checkedBox.svg) no-repeat center !important;
+  width: 1.4rem;
+  height: 1.4rem;
 }
 
 .loginFormButton {
@@ -113,6 +145,7 @@
   border: none;
   border-radius: 3rem;
   color: #fff;
+  margin-top: 2rem;
   margin-bottom: 0.6rem;
   cursor: pointer;
   transition: all 0.3s;

@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import classes from "./KeysList.module.css";
 import Key from "./Key";

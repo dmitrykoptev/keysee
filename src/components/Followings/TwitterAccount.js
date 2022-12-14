@@ -10,10 +10,10 @@ const TwitterAccount = (props) => {
       <div className={classes.twitter__info}>
         <img src={userImg} alt="Avatar" className={classes.user__avatar} />
         <div className={classes.twitter__text}>
-          {/* <span className={classes.twitter__name}>{user.name}</span> */}
           <a
             href={props.accUrl}
             target="_blank"
+            rel="noreferrer"
             className={classes.twitter__handle}
           >
             {props.handle}

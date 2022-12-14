@@ -1,5 +1,6 @@
 .header {
   width: 100vw;
+  min-height: 4.5rem;
   background: #5c84f7;
 }
 
@@ -15,4 +16,52 @@
 
 .logo__img {
   width: 5.6rem;
+}
+
+.user__avatar {
+  width: 4.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.user__avatar:hover {
+  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.1);
+}
+
+.modal {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.popUp {
+  width: 12rem;
+  height: fit-content;
+  z-index: 100;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px 2px rgba(206, 206, 206, 0.4);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+
+  position: absolute;
+  right: 2rem;
+  top: 6rem;
+  transition: all 0.3s;
+}
+
+.popUp span {
+  font-size: 1.8rem;
+  color: #151515;
+  cursor: pointer;
+}
+
+.popUp span:hover {
+  text-decoration: underline;
 }
