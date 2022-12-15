@@ -25,7 +25,9 @@ const MainHeader = () => {
     <>
       <header className={classes.header}>
         <nav>
-          <img src={logo} alt="KeySee" className={classes.logo__img} />
+          <a href="/">
+            <img src={logo} alt="KeySee" className={classes.logo__img} />
+          </a>
           <img
             src={userImg}
             alt="User Avatar"
@@ -37,8 +39,10 @@ const MainHeader = () => {
       {showModal && (
         <div className={classes.modal} onClick={closeModalHandler}>
           <div className={classes.popUp}>
-            <span href="/">Options</span>
-            <span onClick={logOutHandler}>Log out</span>
+            <a href="/profile">My Profile</a>
+            <a href="#" onClick={logOutHandler}>
+              Log out
+            </a>
           </div>
         </div>
       )}

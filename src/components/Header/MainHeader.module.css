@@ -19,7 +19,7 @@
 }
 
 .user__avatar {
-  width: 4.2rem;
+  width: 4.5rem;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -38,7 +38,8 @@
 }
 
 .popUp {
-  width: 12rem;
+  width: 14rem;
+
   height: fit-content;
   z-index: 100;
   background-color: #ffffff;
@@ -56,12 +57,12 @@
   transition: all 0.3s;
 }
 
-.popUp span {
+.popUp a {
+  text-decoration: none;
   font-size: 1.8rem;
   color: #151515;
-  cursor: pointer;
 }
 
-.popUp span:hover {
+.popUp a:hover {
   text-decoration: underline;
 }

@@ -27,22 +27,21 @@
 }
 
 .newUser {
+  display: flex;
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 1rem;
   margin-left: 1.4rem;
 }
 
-.newUser button {
-  border: none;
-  background: none;
+.newUser span {
   color: #5c84f7;
   margin-left: 0.4rem;
   cursor: pointer;
 }
 
-.newUser button:hover,
-.newUser button:active {
+.newUser span:hover,
+.newUser span:active {
   color: #4572f2;
   text-decoration: underline;
 }
@@ -145,7 +144,7 @@
   border: none;
   border-radius: 3rem;
   color: #fff;
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   margin-bottom: 0.6rem;
   cursor: pointer;
   transition: all 0.3s;
@@ -183,4 +182,14 @@
   width: 6.3rem;
   position: absolute;
   bottom: 4rem;
+}
+
+.errorText {
+  font-size: 1.2rem;
+  margin-left: 1.4rem;
+  color: #fa324b;
+}
+
+.errorIcon {
+  margin-left: 2.6rem;
 }

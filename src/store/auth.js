@@ -2,16 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: { token: "", isLoggedin: false },
+  initialState: { token: localStorage.getItem("token"), error: null },
   reducers: {
     logIn(state, action) {
       state.token = action.payload;
-      state.isLoggedin = true;
-      console.log(state.token, state.isLoggedin);
+      localStorage.setItem("token", action.payload);
     },
     logOut(state) {
       state.token = "";
-      state.isLoggedin = false;
+      localStorage.removeItem("token");
+      console.log(state.token, state.isLoggedIn);
+    },
+    showError(state, action) {
+      const message = action.payload;
+      state.error = { errorMessage: message };
+    },
+    removeError(state) {
+      state.error = null;
     },
   },
 });

@@ -4,18 +4,16 @@ import classes from "./LoginForm.module.css";
 import logoMain from "../../images/LogoMain.png";
 import useInput from "../../hooks/use-input";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth";
 
 const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [signIn, setSignIn] = useState(false);
+  const isError = useSelector((state) => state.auth.error);
+  const [signIn, setSignIn] = useState(true);
   const [passwordType, setPasswordType] = useState(true);
   const [checkBox, setCheckBox] = useState(true);
-  const checkBoxHandler = () => {
-    setCheckBox((prev) => !prev);
-  };
 
   const {
     value: enteredEmail,
@@ -23,10 +21,12 @@ const LoginForm = () => {
     isValid: enteredEmailIsValid,
     valueChangeHandler: emailChangedHandler,
     inputBlurHandler: emailBlurHandler,
+    inputFocusHandler: emailFocusHandler,
     reset: resetEmailInput,
-  } = useInput(
-    (value) =>
-      value.includes("@") && value.includes(".") && value.trim().length >= 6
+  } = useInput((value) =>
+    !signIn
+      ? value.includes("@") && value.includes(".") && value.trim().length >= 6
+      : value.trim().length >= 1
   );
 
   const {
@@ -36,12 +36,22 @@ const LoginForm = () => {
     valueChangeHandler: passwordChangedHandler,
     inputBlurHandler: passwordBlurHandler,
     reset: resetPasswordInput,
-  } = useInput((value) => value.trim().length >= 6);
+  } = useInput((value) =>
+    !signIn ? value.trim().length >= 6 : value.trim().length >= 1
+  );
+
+  const checkBoxHandler = () => {
+    setCheckBox((prev) => !prev);
+  };
 
   let formIsValid = false;
-
   if (enteredEmailIsValid && enteredPasswordIsValid) {
     formIsValid = true;
+  }
+
+  let validationError = false;
+  if (!signIn && (emailInputHasError || passwordInputHasError)) {
+    validationError = true;
   }
 
   const submitHandler = (event) => {
@@ -58,7 +68,7 @@ const LoginForm = () => {
     }
 
     const sendRequest = async () => {
-      const request = await fetch(url, {
+      const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify({
           email: enteredEmail,
@@ -70,22 +80,23 @@ const LoginForm = () => {
         },
       });
 
-      if (!request.ok) {
-        throw new Error("Something went wrong ...");
+      if (!response.ok) {
+        if (!signIn) {
+          throw new Error("This email already exists");
+        } else {
+          throw new Error("Email or password was wrong");
+        }
       }
 
-      const data = await request.json();
-
+      const data = await response.json();
       dispatch(authActions.logIn(data.idToken));
     };
 
-    try {
-      sendRequest();
-    } catch (error) {
-      alert(error.message);
-    }
+    sendRequest().catch((err) => {
+      dispatch(authActions.showError(err.message));
+    });
 
-    // history.replace("/main");
+    history.replace("/");
     resetEmailInput();
     resetPasswordInput();
   };
@@ -94,6 +105,7 @@ const LoginForm = () => {
     event.preventDefault();
 
     setSignIn((prev) => !prev);
+    dispatch(authActions.removeError());
   };
 
   const seePasswordHandler = () => {
@@ -108,21 +120,23 @@ const LoginForm = () => {
     ? `${classes.checkBox}`
     : `${classes.checkBox} ${classes.checkedBox}`;
 
-  const emailInputClasses = !emailInputHasError
-    ? `${classes.formInput}`
-    : `${classes.formInput} ${classes.wrongCredentials}`;
+  const emailInputClasses =
+    emailInputHasError || isError
+      ? `${classes.formInput} ${classes.wrongCredentials}`
+      : `${classes.formInput}`;
 
-  const passwordInputClasses = !passwordInputHasError
-    ? `${classes.formInput}`
-    : `${classes.formInput} ${classes.wrongCredentials}`;
+  const passwordInputClasses =
+    passwordInputHasError || isError
+      ? `${classes.formInput} ${classes.wrongCredentials}`
+      : `${classes.formInput}`;
 
   return (
     <div className={classes.container}>
       <form onSubmit={submitHandler} className={classes.loginForm}>
         <h1>Sign {!signIn ? "Up" : "In"}</h1>
         <div className={classes.newUser}>
-          <span>{!signIn ? "Have an account?" : "New user?"}</span>
-          <button onClick={signInHandler}>Sign {!signIn ? "in" : "up"}.</button>
+          <p>{!signIn ? "Have an account?" : "New user?"}</p>
+          <span onClick={signInHandler}>Sign {!signIn ? "in" : "up"}.</span>
         </div>
         <div className={classes.inputsContainer}>
           <input
@@ -132,6 +146,7 @@ const LoginForm = () => {
             value={enteredEmail}
             onChange={emailChangedHandler}
             onBlur={emailBlurHandler}
+            onFocus={emailFocusHandler}
           ></input>
           <div className={classes.passwordInput}>
             <input
@@ -148,7 +163,13 @@ const LoginForm = () => {
             ></div>
           </div>
         </div>
-        {signIn && (
+        {validationError && (
+          <p className={classes.errorText}>
+            Please enter correct email & password.
+          </p>
+        )}
+        {isError && <p className={classes.errorText}>{isError.errorMessage}</p>}
+        {signIn && !isError && (
           <div className={classes.stayLoggedIn}>
             <div onClick={checkBoxHandler} className={checkBoxClasses}></div>
             <span>Remember me</span>

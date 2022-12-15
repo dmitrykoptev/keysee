@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../store/auth";
 
 const useInput = (validateValue) => {
+  const dispatch = useDispatch();
+  const isError = useSelector((state) => state.auth.error);
+
   const [enteredValue, setEnteredValue] = useState("");
   const [isTouched, setIsTouched] = useState(false);
 
@@ -15,6 +20,10 @@ const useInput = (validateValue) => {
     setIsTouched(true);
   };
 
+  const inputFocusHandler = () => {
+    dispatch(authActions.removeError());
+  };
+
   const reset = () => {
     setEnteredValue("");
     setIsTouched(false);
@@ -26,6 +35,7 @@ const useInput = (validateValue) => {
     isValid: valueIsValid,
     valueChangeHandler,
     inputBlurHandler,
+    inputFocusHandler,
     reset,
   };
 };
