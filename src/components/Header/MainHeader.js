@@ -3,22 +3,19 @@ import React, { useState } from "react";
 import classes from "./MainHeader.module.css";
 import logo from "../../images/Logo.png";
 import userImg from "../../images/Photo.png";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../store/auth";
+import HeaderMenu from "./HeaderMenu";
+import { useSelector } from "react-redux";
+import LogoutModal from "./MenuModals/LogoutModal";
+import ChangePasswordModal from "./MenuModals/ChangePasswordModal";
 
-const MainHeader = () => {
-  const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
-
-  const showModalHandler = () => {
-    setShowModal(true);
-  };
-  const closeModalHandler = () => {
-    setShowModal(false);
-  };
-
-  const logOutHandler = () => {
-    dispatch(authActions.logOut());
+const MainHeader = (props) => {
+  const showLogout = useSelector((state) => state.modals.showLogoutModal);
+  const showChangePassword = useSelector(
+    (state) => state.modals.showChangePasswordModal
+  );
+  const [menuActive, setMenuActive] = useState(false);
+  const menuActiveHandler = () => {
+    setMenuActive((prev) => !prev);
   };
 
   return (
@@ -32,20 +29,13 @@ const MainHeader = () => {
             src={userImg}
             alt="User Avatar"
             className={classes.user__avatar}
-            onClick={showModalHandler}
+            onClick={menuActiveHandler}
           />
         </nav>
       </header>
-      {showModal && (
-        <div className={classes.modal} onClick={closeModalHandler}>
-          <div className={classes.popUp}>
-            <a href="/profile">My Profile</a>
-            <a href="#" onClick={logOutHandler}>
-              Log out
-            </a>
-          </div>
-        </div>
-      )}
+      <HeaderMenu active={menuActive} setActive={menuActiveHandler} />
+      {showLogout && <LogoutModal />}
+      {showChangePassword && <ChangePasswordModal />}
     </>
   );
 };

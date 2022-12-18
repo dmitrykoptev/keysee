@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import classes from "./LoginForm.module.css";
 import logoMain from "../../images/LogoMain.png";
@@ -10,8 +10,8 @@ import { authActions } from "../../store/auth";
 const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const rememberMe = useSelector((state) => state.auth.rememberMe);
   const isError = useSelector((state) => state.auth.error);
-  const [signIn, setSignIn] = useState(true);
   const [passwordType, setPasswordType] = useState(true);
   const [checkBox, setCheckBox] = useState(true);
 
@@ -23,11 +23,7 @@ const LoginForm = () => {
     inputBlurHandler: emailBlurHandler,
     inputFocusHandler: emailFocusHandler,
     reset: resetEmailInput,
-  } = useInput((value) =>
-    !signIn
-      ? value.includes("@") && value.includes(".") && value.trim().length >= 6
-      : value.trim().length >= 1
-  );
+  } = useInput((value) => value.trim().length >= 1);
 
   const {
     value: enteredPassword,
@@ -36,12 +32,11 @@ const LoginForm = () => {
     valueChangeHandler: passwordChangedHandler,
     inputBlurHandler: passwordBlurHandler,
     reset: resetPasswordInput,
-  } = useInput((value) =>
-    !signIn ? value.trim().length >= 6 : value.trim().length >= 1
-  );
+  } = useInput((value) => value.trim().length >= 1);
 
   const checkBoxHandler = () => {
     setCheckBox((prev) => !prev);
+    dispatch(authActions.rememberMeHandler());
   };
 
   let formIsValid = false;
@@ -49,23 +44,15 @@ const LoginForm = () => {
     formIsValid = true;
   }
 
-  let validationError = false;
-  if (!signIn && (emailInputHasError || passwordInputHasError)) {
-    validationError = true;
-  }
+  const logoutHandler = useCallback(() => {
+    dispatch(authActions.logOut());
+  }, [dispatch]);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(enteredEmail, enteredPassword);
 
-    let url;
-    if (signIn) {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBD3lPiWWjbfHBAvg0UlC2IOXOzKqlhSTY";
-    } else {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBD3lPiWWjbfHBAvg0UlC2IOXOzKqlhSTY";
-    }
+    const url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBD3lPiWWjbfHBAvg0UlC2IOXOzKqlhSTY";
 
     const sendRequest = async () => {
       const response = await fetch(url, {
@@ -81,30 +68,29 @@ const LoginForm = () => {
       });
 
       if (!response.ok) {
-        if (!signIn) {
-          throw new Error("This email already exists");
-        } else {
-          throw new Error("Email or password was wrong");
-        }
+        throw new Error("Email or password was wrong");
       }
 
       const data = await response.json();
       dispatch(authActions.logIn(data.idToken));
+
+      if (!rememberMe) {
+        console.log("Logout in 3 seconds");
+        setTimeout(logoutHandler, 3000);
+      }
     };
 
     sendRequest().catch((err) => {
       dispatch(authActions.showError(err.message));
     });
 
-    history.replace("/");
+    document.activeElement.blur();
     resetEmailInput();
     resetPasswordInput();
   };
 
-  const signInHandler = (event) => {
-    event.preventDefault();
-
-    setSignIn((prev) => !prev);
+  const signInHandler = () => {
+    history.replace("/register");
     dispatch(authActions.removeError());
   };
 
@@ -133,10 +119,10 @@ const LoginForm = () => {
   return (
     <div className={classes.container}>
       <form onSubmit={submitHandler} className={classes.loginForm}>
-        <h1>Sign {!signIn ? "Up" : "In"}</h1>
+        <h1>Sign In</h1>
         <div className={classes.newUser}>
-          <p>{!signIn ? "Have an account?" : "New user?"}</p>
-          <span onClick={signInHandler}>Sign {!signIn ? "in" : "up"}.</span>
+          <p>New user?</p>
+          <span onClick={signInHandler}>Sign up.</span>
         </div>
         <div className={classes.inputsContainer}>
           <input
@@ -163,13 +149,13 @@ const LoginForm = () => {
             ></div>
           </div>
         </div>
-        {validationError && (
+        {/* {validationError && (
           <p className={classes.errorText}>
             Please enter correct email & password.
           </p>
-        )}
+        )} */}
         {isError && <p className={classes.errorText}>{isError.errorMessage}</p>}
-        {signIn && !isError && (
+        {!isError && (
           <div className={classes.stayLoggedIn}>
             <div onClick={checkBoxHandler} className={checkBoxClasses}></div>
             <span>Remember me</span>
@@ -180,11 +166,9 @@ const LoginForm = () => {
           className={classes.loginFormButton}
           type="submit"
         >
-          Sign {!signIn ? "Up" : "In"}
+          Sign In
         </button>
-        {signIn && (
-          <div className={classes.forgotPassword}>Forgot password?</div>
-        )}
+        <div className={classes.forgotPassword}>Forgot password?</div>
       </form>
       <img src={logoMain} alt="keysee" className={classes.mainLogo} />
     </div>

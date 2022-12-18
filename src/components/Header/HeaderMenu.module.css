@@ -1,0 +1,38 @@
+.menu {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  transform: translateY(-100%);
+  transition: all 0.3s;
+}
+
+.active {
+  transform: translateY(0);
+}
+
+.menuList {
+  background: #fff;
+  position: fixed;
+  right: 0;
+  width: 18rem;
+  height: 8rem;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.4rem;
+  border-end-start-radius: 2rem;
+  box-shadow: -3px 3px 12px 1px rgba(206, 206, 206, 0.4);
+}
+
+.menuList span {
+  width: fit-content;
+  font-size: 1.4rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.menuList span:hover {
+  text-decoration: underline;
+}

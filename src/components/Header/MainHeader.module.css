@@ -1,4 +1,6 @@
 .header {
+  position: sticky;
+  z-index: 100;
   width: 100vw;
   min-height: 4.5rem;
   background: #5c84f7;
@@ -26,43 +28,4 @@
 
 .user__avatar:hover {
   box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.1);
-}
-
-.modal {
-  position: absolute;
-  z-index: 1;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-}
-
-.popUp {
-  width: 14rem;
-
-  height: fit-content;
-  z-index: 100;
-  background-color: #ffffff;
-  box-shadow: 0 0 8px 2px rgba(206, 206, 206, 0.4);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-
-  position: absolute;
-  right: 2rem;
-  top: 6rem;
-  transition: all 0.3s;
-}
-
-.popUp a {
-  text-decoration: none;
-  font-size: 1.8rem;
-  color: #151515;
-}
-
-.popUp a:hover {
-  text-decoration: underline;
 }

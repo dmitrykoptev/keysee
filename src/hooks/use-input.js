@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
 
 const useInput = (validateValue) => {
   const dispatch = useDispatch();
-  const isError = useSelector((state) => state.auth.error);
 
   const [enteredValue, setEnteredValue] = useState("");
   const [isTouched, setIsTouched] = useState(false);

@@ -10,6 +10,7 @@ const Profile = () => {
         <h1>Change password</h1>
         <input type="password" placeholder="Old password" />
         <input type="password" placeholder="New password" />
+        <input type="password" placeholder="Repeat new password" />
         <button type="submit">Change password</button>
       </form>
       <img src={logoMain} alt="keysee" className={classes.mainLogo} />

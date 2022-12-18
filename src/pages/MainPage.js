@@ -14,7 +14,6 @@ let isInitial = true;
 const MainPage = () => {
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.notification.notification);
-
   const keyList = useSelector((state) => state.keyList);
   const accountsList = useSelector((state) => state.accountsList);
 
