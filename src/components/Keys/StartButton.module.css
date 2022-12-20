@@ -5,19 +5,7 @@
 }
 
 .startButton button {
-  height: 3.8rem;
+  margin: 0;
   width: 99%;
-  background-color: #5c84f7;
   font-size: 1.6rem;
-  font-weight: 800;
-  color: #fff;
-  border: none;
-  border-radius: 3rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.startButton button:hover,
-.startButton button:active {
-  background-color: #4572f2;
 }

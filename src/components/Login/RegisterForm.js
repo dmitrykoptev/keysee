@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 
-import classes from "./LoginForm.module.css";
+import classes from "./AuthForm.module.css";
 import logoMain from "../../images/LogoMain.png";
 import useInput from "../../hooks/use-input";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth";
+import MainButton from "../Reusable/MainButton";
+import PasswordInput from "../Reusable/PasswordInput";
 
 const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const isError = useSelector((state) => state.auth.error);
-  const [passwordType, setPasswordType] = useState(true);
 
   const {
     value: enteredEmail,
@@ -48,21 +49,21 @@ const LoginForm = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBD3lPiWWjbfHBAvg0UlC2IOXOzKqlhSTY";
-
     const sendRequest = async () => {
-      const response = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBD3lPiWWjbfHBAvg0UlC2IOXOzKqlhSTY",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: enteredEmail,
+            password: enteredPassword,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("This email already exists");
@@ -81,28 +82,13 @@ const LoginForm = () => {
     resetPasswordInput();
   };
 
-  const signInHandler = (event) => {
+  const signInHandler = () => {
     history.replace("/login");
     dispatch(authActions.removeError());
   };
 
-  const seePasswordHandler = () => {
-    setPasswordType((prev) => !prev);
-  };
-
-  const seePasswordClasses = passwordType
-    ? `${classes.seePassword}`
-    : `${classes.seePassword} ${classes.seeText}`;
-
   const emailInputClasses =
-    emailInputHasError || isError
-      ? `${classes.formInput} ${classes.wrongCredentials}`
-      : `${classes.formInput}`;
-
-  const passwordInputClasses =
-    passwordInputHasError || isError
-      ? `${classes.formInput} ${classes.wrongCredentials}`
-      : `${classes.formInput}`;
+    emailInputHasError || isError ? `formInput wrongCredentials` : `formInput`;
 
   return (
     <div className={classes.container}>
@@ -112,7 +98,7 @@ const LoginForm = () => {
           <p>Have an account?</p>
           <span onClick={signInHandler}>Sign in.</span>
         </div>
-        <div className={classes.inputsContainer}>
+        <div className="inputsContainer">
           <input
             type="email"
             placeholder="Email"
@@ -122,20 +108,15 @@ const LoginForm = () => {
             onBlur={emailBlurHandler}
             onFocus={emailFocusHandler}
           ></input>
-          <div className={classes.passwordInput}>
-            <input
-              type={passwordType ? "password" : "text"}
-              placeholder="Password"
-              className={passwordInputClasses}
-              value={enteredPassword}
-              onChange={passwordChangedHandler}
-              onBlur={passwordBlurHandler}
-            ></input>
-            <div
-              className={seePasswordClasses}
-              onClick={seePasswordHandler}
-            ></div>
-          </div>
+          <PasswordInput
+            enteredPassword={enteredPassword}
+            passwordInputHasError={passwordInputHasError}
+            enteredPasswordIsValid={enteredPasswordIsValid}
+            passwordChangedHandler={passwordChangedHandler}
+            passwordBlurHandler={passwordBlurHandler}
+            resetPasswordInput={resetPasswordInput}
+            placeholder="Password"
+          />
         </div>
         {validationError && (
           <p className={classes.errorText}>
@@ -149,13 +130,7 @@ const LoginForm = () => {
             <span>Remember me</span>
           </div>
         )} */}
-        <button
-          disabled={!formIsValid}
-          className={classes.loginFormButton}
-          type="submit"
-        >
-          Sign Up
-        </button>
+        <MainButton title="Sign Up" type="submit" disabled={!formIsValid} />
       </form>
       <img src={logoMain} alt="keysee" className={classes.mainLogo} />
     </div>

@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 
 import classes from "./MainHeader.module.css";
 import logo from "../../images/Logo.png";
 import userImg from "../../images/Photo.png";
 import HeaderMenu from "./HeaderMenu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LogoutModal from "./MenuModals/LogoutModal";
 import ChangePasswordModal from "./MenuModals/ChangePasswordModal";
+import { modalActions } from "../../store/modals";
 
-const MainHeader = (props) => {
+const MainHeader = () => {
+  const dispatch = useDispatch();
+  const menuActive = useSelector((state) => state.modals.showMenu);
   const showLogout = useSelector((state) => state.modals.showLogoutModal);
   const showChangePassword = useSelector(
     (state) => state.modals.showChangePasswordModal
   );
-  const [menuActive, setMenuActive] = useState(false);
   const menuActiveHandler = () => {
-    setMenuActive((prev) => !prev);
+    !menuActive
+      ? dispatch(modalActions.openMenu())
+      : dispatch(modalActions.closeMenu());
   };
 
   return (
@@ -33,7 +37,9 @@ const MainHeader = (props) => {
           />
         </nav>
       </header>
-      <HeaderMenu active={menuActive} setActive={menuActiveHandler} />
+      {menuActive && (
+        <HeaderMenu active={menuActive} setActive={menuActiveHandler} />
+      )}
       {showLogout && <LogoutModal />}
       {showChangePassword && <ChangePasswordModal />}
     </>

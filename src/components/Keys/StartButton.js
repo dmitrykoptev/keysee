@@ -1,12 +1,13 @@
 import React from "react";
 import classes from "./StartButton.module.css";
 import SectionBottom from "../Layout/SectionBottom";
+import MainButton from "../Reusable/MainButton";
 
 const StartButton = () => {
   return (
     <SectionBottom>
       <div className={classes.startButton}>
-        <button>Let’s goooo mathafaka</button>
+        <MainButton title="Start Search" />
       </div>
     </SectionBottom>
   );

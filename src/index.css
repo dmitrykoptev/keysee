@@ -32,3 +32,49 @@ h2 {
   font-size: 2.2rem;
   color: #000;
 }
+
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.formInput {
+  width: 28.4rem;
+  height: 3.8rem;
+  padding: 0 1.4rem;
+  background-color: #f7f7f7;
+  border: none;
+  outline: none;
+  border-radius: 3rem;
+}
+
+*::placeholder {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #9a9a9a;
+}
+
+.wrongCredentials {
+  border: 1px solid #fa324b;
+  color: #fa324b;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+  background: none;
+}
+input:focus:-moz-placeholder {
+  color: transparent;
+  background: none;
+} /* FireFox 4-18 */
+input:focus::-moz-placeholder {
+  color: transparent;
+  background: none;
+} /* FireFox 19+ */
+input:focus:-ms-input-placeholder {
+  color: transparent;
+  background: none;
+} /* Internet Explorer 10+ */

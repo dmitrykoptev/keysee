@@ -5,7 +5,6 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
 const MainPage = React.lazy(() => import("./pages/MainPage"));
-const ProfilePage = React.lazy(() => import("./pages/ProfilePage"));
 const ErrorPage = React.lazy(() => import("./pages/ErrorPage"));
 
 const App = () => {
@@ -26,10 +25,6 @@ const App = () => {
         <Route path="/register">
           {!isLoggedIn && <RegisterPage />}
           {isLoggedIn && <Redirect to="/" />}
-        </Route>
-        <Route path="/profile">
-          {isLoggedIn && <ProfilePage />}
-          {!isLoggedIn && <Redirect to="/login" />}
         </Route>
         <Route to="*">
           <ErrorPage />

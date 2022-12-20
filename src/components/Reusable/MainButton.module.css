@@ -1,0 +1,27 @@
+.mainButton {
+  width: 28.4rem;
+  height: 3.8rem;
+  background-color: #5c84f7;
+  border: none;
+  border-radius: 3rem;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mainButton:hover,
+.mainButton:active {
+  background-color: #4572f2;
+}
+
+.mainButton:disabled,
+.mainButton:disabled:hover,
+.mainButton:disabled:active {
+  background-color: #e6e6e6;
+  color: #9a9a9a;
+  cursor: not-allowed;
+}
