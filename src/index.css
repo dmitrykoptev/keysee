@@ -78,3 +78,11 @@ input:focus:-ms-input-placeholder {
   color: transparent;
   background: none;
 } /* Internet Explorer 10+ */
+
+.centered {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

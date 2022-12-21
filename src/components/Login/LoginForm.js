@@ -95,6 +95,11 @@ const LoginForm = () => {
     dispatch(authActions.removeError());
   };
 
+  const forgotPasswordHandle = () => {
+    history.replace("/reset-password");
+    dispatch(authActions.removeError());
+  };
+
   const checkBoxClasses = !checkBox
     ? `${classes.checkBox}`
     : `${classes.checkBox} ${classes.checkedBox}`;
@@ -119,7 +124,7 @@ const LoginForm = () => {
             onChange={emailChangedHandler}
             onBlur={emailBlurHandler}
             onFocus={emailFocusHandler}
-          ></input>
+          />
           <PasswordInput
             enteredPassword={enteredPassword}
             passwordInputHasError={passwordInputHasError}
@@ -138,7 +143,9 @@ const LoginForm = () => {
           </div>
         )}
         <MainButton title="Sign In" type="submit" disabled={!formIsValid} />
-        <div className={classes.forgotPassword}>Forgot password?</div>
+        <span onClick={forgotPasswordHandle} className={classes.forgotPassword}>
+          Forgot password?
+        </span>
       </form>
       <img src={logoMain} alt="keysee" className={classes.mainLogo} />
     </div>

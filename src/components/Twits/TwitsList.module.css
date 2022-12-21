@@ -15,4 +15,16 @@
   transform: translateX(-50%);
 }
 
-/* ВЫРОВНЯТЬ БЛОки */
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2.2rem;
+
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #9a9a9a;
+}

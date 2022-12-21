@@ -12,6 +12,7 @@
 }
 
 .menuList {
+  list-style: none;
   background: #fff;
   position: fixed;
   right: 0;
@@ -21,18 +22,33 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 0.4rem;
+  row-gap: 1rem;
   border-end-start-radius: 2rem;
   box-shadow: -3px 3px 12px 1px rgba(206, 206, 206, 0.4);
 }
 
-.menuList span {
+.menuLi {
+  display: flex;
+  column-gap: 0.6rem;
+
   width: fit-content;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   transition: all 0.3s;
   cursor: pointer;
 }
 
-.menuList span:hover {
+.menuLi:hover {
   text-decoration: underline;
+}
+
+.optionsIcon {
+  background: url(../../icons/options.svg) no-repeat center;
+  width: 1.6rem;
+  height: 1.8rem;
+}
+
+.logoutIcon {
+  background: url(../../icons/logout.svg) no-repeat center;
+  width: 1.8rem;
+  height: 1.8rem;
 }

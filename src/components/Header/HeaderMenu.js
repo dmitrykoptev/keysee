@@ -22,10 +22,19 @@ const HeaderMenu = ({ active, setActive }) => {
   return (
     <>
       <div className={menuClasses} onClick={setActive}>
-        <div className={classes.menuList} onClick={(e) => e.stopPropagation()}>
-          <span onClick={showChangePasswordHandler}>Change password</span>
-          <span onClick={showLogoutHandler}>Logout</span>
-        </div>
+        <ul
+          className={classes.menuList}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <li onClick={showChangePasswordHandler} className={classes.menuLi}>
+            <div className={classes.optionsIcon}></div>
+            <span>Change password</span>
+          </li>
+          <li onClick={showLogoutHandler} className={classes.menuLi}>
+            <div className={classes.logoutIcon}></div>
+            <span>Logout</span>
+          </li>
+        </ul>
       </div>
     </>
   );

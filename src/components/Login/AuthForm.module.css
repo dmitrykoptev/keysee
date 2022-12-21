@@ -8,9 +8,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* transition: all 0.3s; */
 }
 
 .loginForm {
+  max-width: 36rem;
   padding: 3.6rem 3.4rem;
   border: 0.1rem solid #e6e6e6;
   border-radius: 3rem;
@@ -91,4 +93,11 @@
   font-size: 1.2rem;
   margin-left: 1.4rem;
   color: #fa324b;
+}
+
+.sucessReg {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #5c84f7;
+  text-align: center;
 }

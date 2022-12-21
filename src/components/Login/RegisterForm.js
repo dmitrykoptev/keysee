@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classes from "./AuthForm.module.css";
 import logoMain from "../../images/LogoMain.png";
@@ -13,6 +13,7 @@ const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const isError = useSelector((state) => state.auth.error);
+  const [regComplete, setRegComplete] = useState(false);
 
   const {
     value: enteredEmail,
@@ -70,7 +71,11 @@ const LoginForm = () => {
       }
 
       const data = await response.json();
-      dispatch(authActions.logIn(data.idToken));
+      setRegComplete(true);
+      setTimeout(() => {
+        setRegComplete(false);
+        dispatch(authActions.logIn(data.idToken));
+      }, 2000);
     };
 
     sendRequest().catch((err) => {
@@ -93,44 +98,51 @@ const LoginForm = () => {
   return (
     <div className={classes.container}>
       <form onSubmit={submitHandler} className={classes.loginForm}>
-        <h1>Sign Up</h1>
-        <div className={classes.newUser}>
-          <p>Have an account?</p>
-          <span onClick={signInHandler}>Sign in.</span>
-        </div>
-        <div className="inputsContainer">
-          <input
-            type="email"
-            placeholder="Email"
-            className={emailInputClasses}
-            value={enteredEmail}
-            onChange={emailChangedHandler}
-            onBlur={emailBlurHandler}
-            onFocus={emailFocusHandler}
-          ></input>
-          <PasswordInput
-            enteredPassword={enteredPassword}
-            passwordInputHasError={passwordInputHasError}
-            enteredPasswordIsValid={enteredPasswordIsValid}
-            passwordChangedHandler={passwordChangedHandler}
-            passwordBlurHandler={passwordBlurHandler}
-            resetPasswordInput={resetPasswordInput}
-            placeholder="Password"
-          />
-        </div>
-        {validationError && (
-          <p className={classes.errorText}>
-            Please enter correct email & password.
-          </p>
+        {!regComplete && (
+          <>
+            <h1>Sign Up</h1>
+            <div className={classes.newUser}>
+              <p>Have an account?</p>
+              <span onClick={signInHandler}>Sign in.</span>
+            </div>
+            <div className="inputsContainer">
+              <input
+                type="email"
+                placeholder="Email"
+                className={emailInputClasses}
+                value={enteredEmail}
+                onChange={emailChangedHandler}
+                onBlur={emailBlurHandler}
+                onFocus={emailFocusHandler}
+              ></input>
+              <PasswordInput
+                enteredPassword={enteredPassword}
+                passwordInputHasError={passwordInputHasError}
+                enteredPasswordIsValid={enteredPasswordIsValid}
+                passwordChangedHandler={passwordChangedHandler}
+                passwordBlurHandler={passwordBlurHandler}
+                resetPasswordInput={resetPasswordInput}
+                placeholder="Password"
+              />
+            </div>
+            {validationError && (
+              <p className={classes.errorText}>
+                Please enter correct email & password.
+              </p>
+            )}
+            {isError && (
+              <p className={classes.errorText}>{isError.errorMessage}</p>
+            )}
+            <MainButton title="Sign Up" type="submit" disabled={!formIsValid} />
+          </>
         )}
-        {isError && <p className={classes.errorText}>{isError.errorMessage}</p>}
-        {/* {signIn && !isError && (
-          <div className={classes.stayLoggedIn}>
-            <div onClick={checkBoxHandler} className={checkBoxClasses}></div>
-            <span>Remember me</span>
-          </div>
-        )} */}
-        <MainButton title="Sign Up" type="submit" disabled={!formIsValid} />
+        {regComplete && (
+          <span className={classes.sucessReg}>
+            Congratulations!
+            <br />
+            You have successfully registered!
+          </span>
+        )}
       </form>
       <img src={logoMain} alt="keysee" className={classes.mainLogo} />
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../../hooks/use-input";
 import { modalActions } from "../../../store/modals";
+import { notificationActions } from "../../../store/notification";
 import MainButton from "../../Reusable/MainButton";
 import Modal from "../../Reusable/Modal";
 import PasswordInput from "../../Reusable/PasswordInput";
@@ -75,17 +76,33 @@ const ChangePasswordModal = () => {
         }
       );
 
-      console.log(response);
       if (!response.ok) {
-        throw new Error("Something went wrong ...");
+        throw new Error("Something went wrong. Please try again.");
       }
+
+      dispatch(modalActions.closeModal());
+      dispatch(
+        notificationActions.showNotification({
+          status: "success",
+          message: "Your password was changed successfully!",
+        })
+      );
+      setTimeout(() => {
+        dispatch(notificationActions.hideNotification());
+      }, 1500);
     };
 
-    sendRequest().catch((err) => console.log(err.message));
-    //
-    // ОТОБРАЖАТЬ ОШИБКУ
-    //
-    dispatch(modalActions.closeModal());
+    sendRequest().catch((err) => {
+      dispatch(
+        notificationActions.showNotification({
+          status: "error",
+          message: err.message,
+        })
+      );
+      setTimeout(() => {
+        dispatch(notificationActions.hideNotification());
+      }, 1500);
+    });
   };
 
   return (

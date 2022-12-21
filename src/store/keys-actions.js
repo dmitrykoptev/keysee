@@ -3,13 +3,6 @@ import { notificationActions } from "./notification";
 
 export const sendKeysData = (keyList) => {
   return async (dispatch) => {
-    dispatch(
-      notificationActions.showNotification({
-        status: "pending",
-        title: "Sending...",
-        message: "Sending key data",
-      })
-    );
     const sendRequest = async () => {
       await fetch("https://keysee-default-rtdb.firebaseio.com/keys.json", {
         method: "PUT",
@@ -22,22 +15,11 @@ export const sendKeysData = (keyList) => {
 
     try {
       await sendRequest();
-      dispatch(
-        notificationActions.showNotification({
-          status: "success",
-          title: "Success!",
-          message: "Sent key data successfully!",
-        })
-      );
-      setTimeout(() => {
-        dispatch(notificationActions.hideNotification());
-      }, 1500);
     } catch (error) {
       dispatch(
         notificationActions.showNotification({
           status: "error",
-          title: "Error!",
-          message: "Sending cart data failed!",
+          message: "Applying key failed!",
         })
       );
       setTimeout(() => {
@@ -72,10 +54,12 @@ export const fetchKeysData = () => {
       dispatch(
         notificationActions.showNotification({
           status: "error",
-          title: "Error!",
           message: "Fetching keys failed!",
         })
       );
+      setTimeout(() => {
+        dispatch(notificationActions.hideNotification());
+      }, 1500);
     }
   };
 };

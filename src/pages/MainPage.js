@@ -52,7 +52,6 @@ const MainPage = () => {
       {notification && (
         <Notification
           status={notification.status}
-          title={notification.title}
           message={notification.message}
         />
       )}

@@ -3,13 +3,6 @@ import { notificationActions } from "./notification";
 
 export const sendAccountsData = (accountsList) => {
   return async (dispatch) => {
-    dispatch(
-      notificationActions.showNotification({
-        status: "pending",
-        title: "Sending...",
-        message: "Sending account data!",
-      })
-    );
     const sendRequest = async () => {
       await fetch("https://keysee-default-rtdb.firebaseio.com/accounts.json", {
         method: "PUT",
@@ -22,22 +15,11 @@ export const sendAccountsData = (accountsList) => {
 
     try {
       await sendRequest();
-      dispatch(
-        notificationActions.showNotification({
-          status: "success",
-          title: "Success!",
-          message: "Sent account data successfully!",
-        })
-      );
-      setTimeout(() => {
-        dispatch(notificationActions.hideNotification());
-      }, 1500);
     } catch (error) {
       dispatch(
         notificationActions.showNotification({
           status: "error",
-          title: "Error!",
-          message: "Sending account data failed!",
+          message: "Applying account failed!",
         })
       );
       setTimeout(() => {
@@ -72,10 +54,12 @@ export const fetchAccountsData = () => {
       dispatch(
         notificationActions.showNotification({
           status: "error",
-          title: "Error!",
-          message: "Fetching data failed!",
+          message: "Fetching accounts failed!",
         })
       );
+      setTimeout(() => {
+        dispatch(notificationActions.hideNotification());
+      }, 1500);
     }
   };
 };
