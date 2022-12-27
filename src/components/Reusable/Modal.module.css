@@ -1,6 +1,6 @@
 .backdrop {
   position: absolute;
-  z-index: 100;
+  z-index: 10;
   left: 0;
   top: 0;
   width: 100vw;
@@ -35,4 +35,28 @@
 
 .close:hover {
   opacity: 1;
+}
+
+.openModal {
+  animation: modalOpen 0.3s;
+}
+.closeModal {
+  animation: modalClose 0.3s;
+}
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes modalClose {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

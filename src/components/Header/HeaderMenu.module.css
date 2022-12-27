@@ -3,12 +3,6 @@
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  transform: translateY(-100%);
-  transition: all 0.3s;
-}
-
-.active {
-  transform: translateY(0);
 }
 
 .menuList {
@@ -51,4 +45,29 @@
   background: url(../../icons/logout.svg) no-repeat center;
   width: 1.8rem;
   height: 1.8rem;
+}
+
+.menuOpen {
+  animation: openMenu 0.2s;
+}
+.menuClose {
+  animation: closeMenu 0.2s;
+}
+
+@keyframes openMenu {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes closeMenu {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
 }

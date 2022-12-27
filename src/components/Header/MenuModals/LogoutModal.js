@@ -7,7 +7,7 @@ import Modal from "../../Reusable/Modal";
 
 import classes from "./LogoutModal.module.css";
 
-const LogoutModal = () => {
+const LogoutModal = (props) => {
   const dispatch = useDispatch();
   const logoutHandler = () => {
     dispatch(modalActions.closeModal());
@@ -15,7 +15,7 @@ const LogoutModal = () => {
   };
 
   return (
-    <Modal>
+    <Modal modalType="logout" show={props.show}>
       <div className={classes.container}>
         <span className={classes.title}>Do you want to log out?</span>
         <MainButton title="Log Out" onClick={logoutHandler} />

@@ -15,6 +15,9 @@ const ResetPassword = () => {
   const history = useHistory();
   const [passwordReset, setPasswordReset] = useState(false);
   const notification = useSelector((state) => state.notification.notification);
+  const showNotification = useSelector(
+    (state) => state.notification.showNotification
+  );
 
   const {
     value: enteredPassword,
@@ -82,6 +85,9 @@ const ResetPassword = () => {
       setTimeout(() => {
         dispatch(notificationActions.hideNotification());
       }, 2500);
+      setTimeout(() => {
+        dispatch(notificationActions.resetNotification());
+      }, 4000);
     });
   };
 
@@ -126,12 +132,12 @@ const ResetPassword = () => {
         )}
       </form>
       <img src={logoMain} alt="keysee" className={classes.mainLogo} />
-      {notification && (
-        <Notification
-          status={notification.status}
-          message={notification.message}
-        />
-      )}
+
+      <Notification
+        show={showNotification}
+        status={notification.status}
+        message={notification.message}
+      />
     </div>
   );
 };

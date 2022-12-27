@@ -2,20 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const notificationSlice = createSlice({
   name: "notification",
-  initialState: { notification: null },
+  initialState: {
+    notification: { status: "", message: "" },
+    showNotification: false,
+  },
   reducers: {
     showNotification(state, action) {
+      state.showNotification = true;
       state.notification = {
         status: action.payload.status,
-        title: action.payload.title,
         message: action.payload.message,
       };
     },
     hideNotification(state) {
-      state.notification = null;
+      state.showNotification = false;
+    },
+    resetNotification(state) {
+      state.notification = { status: "", message: "" };
+      console.log(state.notification.message);
     },
   },
 });
+
+// Создать функцию вызова уведомления, где будут диспатиться все три редюсера: шоу, хайд и ресет.
+// Функция будет получать статус и сообщение
 
 export const notificationActions = notificationSlice.actions;
 

@@ -1,6 +1,7 @@
 .notification {
   width: fit-content;
   height: 4rem;
+  z-index: 100;
   background-color: #666d71c5;
   border-radius: 3rem;
   display: flex;
@@ -12,7 +13,7 @@
   top: 10vh;
   left: 50vw;
   transform: translateX(-50%);
-  transition: all 0.4s;
+  /* transition: all 1s ease-out; */
 }
 
 .notification p {
@@ -27,4 +28,30 @@
 
 .success {
   background-color: #02c162b0;
+}
+
+.ModalOpen {
+  animation: openModal 0.2s ease-in forwards;
+}
+
+.ModalClosed {
+  animation: closeModal 0.4s ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

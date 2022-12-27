@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../../hooks/use-input";
+import { authActions } from "../../../store/auth";
 import { modalActions } from "../../../store/modals";
 import { notificationActions } from "../../../store/notification";
 import MainButton from "../../Reusable/MainButton";
@@ -9,11 +10,11 @@ import PasswordInput from "../../Reusable/PasswordInput";
 
 import classes from "./ChangePasswordModal.module.css";
 
-const ChangePasswordModal = () => {
+const ChangePasswordModal = (props) => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
 
-  const {
+  let {
     value: enteredPasswordOld,
     hasError: passwordInputHasErrorOld,
     isValid: enteredPasswordIsValidOld,
@@ -22,7 +23,7 @@ const ChangePasswordModal = () => {
     reset: resetPasswordInputOld,
   } = useInput((value) => value.trim().length >= 6);
 
-  const {
+  let {
     value: enteredPassword,
     hasError: passwordInputHasError,
     isValid: enteredPasswordIsValid,
@@ -31,7 +32,7 @@ const ChangePasswordModal = () => {
     reset: resetPasswordInput,
   } = useInput((value) => value.trim().length >= 6);
 
-  const {
+  let {
     value: enteredPasswordRepeat,
     hasError: passwordInputHasErrorRepeat,
     isValid: enteredPasswordIsValidRepeat,
@@ -40,7 +41,13 @@ const ChangePasswordModal = () => {
     reset: resetPasswordInputRepeat,
   } = useInput((value) => value.trim().length >= 6);
 
-  let validationError = false;
+  const resetForm = () => {
+    resetPasswordInputOld();
+    resetPasswordInput();
+    resetPasswordInputRepeat();
+  };
+
+  let validationError;
   if (
     passwordInputHasErrorOld ||
     passwordInputHasError ||
@@ -76,20 +83,31 @@ const ChangePasswordModal = () => {
         }
       );
 
+      document.activeElement.blur();
+      resetPasswordInputOld();
+      resetPasswordInput();
+      resetPasswordInputRepeat();
+
       if (!response.ok) {
         throw new Error("Something went wrong. Please try again.");
       }
 
+      console.log(enteredPassword);
       dispatch(modalActions.closeModal());
       dispatch(
         notificationActions.showNotification({
           status: "success",
-          message: "Your password was changed successfully!",
+          message: `Your password was changed. 
+          You'll be logged out in 2 seconds.`,
         })
       );
       setTimeout(() => {
         dispatch(notificationActions.hideNotification());
-      }, 1500);
+        dispatch(authActions.logOut());
+      }, 2500);
+      setTimeout(() => {
+        dispatch(notificationActions.resetNotification());
+      }, 4000);
     };
 
     sendRequest().catch((err) => {
@@ -101,12 +119,15 @@ const ChangePasswordModal = () => {
       );
       setTimeout(() => {
         dispatch(notificationActions.hideNotification());
-      }, 1500);
+      }, 2500);
+      setTimeout(() => {
+        dispatch(notificationActions.resetNotification());
+      }, 4000);
     });
   };
 
   return (
-    <Modal>
+    <Modal modalType="changePassword" reset={resetForm} show={props.show}>
       <div className={classes.container}>
         <span className={classes.title}>Change password</span>
         <form onSubmit={submitHandler}>

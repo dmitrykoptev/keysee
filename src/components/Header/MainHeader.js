@@ -37,11 +37,9 @@ const MainHeader = () => {
           />
         </nav>
       </header>
-      {menuActive && (
-        <HeaderMenu active={menuActive} setActive={menuActiveHandler} />
-      )}
-      {showLogout && <LogoutModal />}
-      {showChangePassword && <ChangePasswordModal />}
+      <HeaderMenu show={menuActive} setActive={menuActiveHandler} />
+      <LogoutModal show={showLogout} />
+      <ChangePasswordModal show={showChangePassword} />
     </>
   );
 };

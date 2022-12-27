@@ -13,9 +13,12 @@ let isInitial = true;
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const notification = useSelector((state) => state.notification.notification);
   const keyList = useSelector((state) => state.keyList);
   const accountsList = useSelector((state) => state.accountsList);
+  const notification = useSelector((state) => state.notification.notification);
+  const showNotification = useSelector(
+    (state) => state.notification.showNotification
+  );
 
   // *** KEYS ***
   useEffect(() => {
@@ -49,12 +52,11 @@ const MainPage = () => {
 
   return (
     <>
-      {notification && (
-        <Notification
-          status={notification.status}
-          message={notification.message}
-        />
-      )}
+      <Notification
+        show={showNotification}
+        status={notification.status}
+        message={notification.message}
+      />
       <MainHeader />
       <main>
         <FollowingsSection />

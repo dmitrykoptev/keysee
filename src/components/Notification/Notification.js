@@ -1,3 +1,4 @@
+import { CSSTransition } from "react-transition-group";
 import classes from "./Notification.module.css";
 
 const Notification = (props) => {
@@ -13,9 +14,24 @@ const Notification = (props) => {
   const cssClasses = `${classes.notification} ${specialClasses}`;
 
   return (
-    <section className={cssClasses}>
-      <p>{props.message}</p>
-    </section>
+    <>
+      <CSSTransition
+        in={props.show}
+        mountOnEnter
+        unmountOnExit
+        timeout={1000}
+        classNames={{
+          enter: "",
+          enterActive: classes.ModalOpen,
+          exit: "",
+          exitActive: classes.ModalClosed,
+        }}
+      >
+        <div className={cssClasses}>
+          <p>{props.message}</p>
+        </div>
+      </CSSTransition>
+    </>
   );
 };
 
