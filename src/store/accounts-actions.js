@@ -4,13 +4,16 @@ import { notificationActions } from "./notification";
 export const sendAccountsData = (accountsList) => {
   return async (dispatch) => {
     const sendRequest = async () => {
-      await fetch("https://keysee-default-rtdb.firebaseio.com/accounts.json", {
-        method: "PUT",
-        body: JSON.stringify({
-          quantity: accountsList.quantity,
-          items: accountsList.items,
-        }),
-      });
+      await fetch(
+        "https://keysee-521c4-default-rtdb.firebaseio.com/accounts.json",
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            quantity: accountsList.quantity,
+            items: accountsList.items,
+          }),
+        }
+      );
     };
 
     try {
@@ -33,7 +36,7 @@ export const fetchAccountsData = () => {
   return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://keysee-default-rtdb.firebaseio.com/accounts.json"
+        "https://keysee-521c4-default-rtdb.firebaseio.com/accounts.json"
       );
 
       const data = await response.json();

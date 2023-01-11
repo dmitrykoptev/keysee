@@ -4,13 +4,16 @@ import { notificationActions } from "./notification";
 export const sendKeysData = (keyList) => {
   return async (dispatch) => {
     const sendRequest = async () => {
-      await fetch("https://keysee-default-rtdb.firebaseio.com/keys.json", {
-        method: "PUT",
-        body: JSON.stringify({
-          quantity: keyList.quantity,
-          items: keyList.items,
-        }),
-      });
+      await fetch(
+        "https://keysee-521c4-default-rtdb.firebaseio.com/keys.json",
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            quantity: keyList.quantity,
+            items: keyList.items,
+          }),
+        }
+      );
     };
 
     try {
@@ -33,7 +36,7 @@ export const fetchKeysData = () => {
   return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://keysee-default-rtdb.firebaseio.com/keys.json"
+        "https://keysee-521c4-default-rtdb.firebaseio.com/keys.json"
       );
 
       const data = await response.json();
