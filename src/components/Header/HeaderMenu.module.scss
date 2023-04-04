@@ -1,0 +1,81 @@
+@import "../../styles/variables.scss";
+
+.menu {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.menuList {
+  list-style: none;
+  background: #fff;
+  position: fixed;
+  right: 0;
+  width: 20rem;
+  height: fit-content;
+  padding: 1.4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  border-end-start-radius: 2rem;
+  box-shadow: -3px 3px 12px 1px rgba(206, 206, 206, 0.4);
+
+  &__item {
+    display: flex;
+    column-gap: 0.6rem;
+
+    width: fit-content;
+    font-size: $font-size-default;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.menuIcon {
+  width: 2rem;
+  height: 2rem;
+
+  &--password {
+    background: url(../../icons/password.svg) no-repeat center;
+  }
+
+  &--email {
+    background: url(../../icons/email.svg) no-repeat center;
+  }
+
+  &--logout {
+    background: url(../../icons/logout.svg) no-repeat center;
+  }
+}
+
+.menuOpen {
+  animation: openMenu 0.25s;
+}
+.menuClose {
+  animation: closeMenu 0.25s;
+}
+
+@keyframes openMenu {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes closeMenu {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}

@@ -1,0 +1,21 @@
+@import "../../styles/variables.scss";
+
+.account {
+  height: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account__handle {
+  font-size: $font-size-large;
+  font-weight: 400;
+  color: $color-grey-dark;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover,
+  &:active {
+    color: $color-black;
+  }
+}

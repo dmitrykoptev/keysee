@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+
+.header {
+  position: sticky;
+  z-index: 9;
+  width: 100vw;
+  min-height: 4.5rem;
+  background: $color-primary;
+
+  nav {
+    max-width: 200rem;
+    margin: 0 auto;
+    height: 7.4vh;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    width: 5.6rem;
+  }
+
+  &__avatar {
+    width: 4.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover,
+    &:active {
+      box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.166);
+    }
+  }
+}

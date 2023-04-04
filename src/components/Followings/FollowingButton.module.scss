@@ -1,0 +1,29 @@
+@import "../../styles/variables.scss";
+
+.btnUnfollow {
+  width: 9rem;
+  padding: 0.6rem 0;
+  background: none;
+  border: 0.1rem solid $color-grey-md;
+  border-radius: 3rem;
+  color: $color-black;
+  font-size: $font-size-small;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover,
+  &:active {
+    background-color: $color-red-light;
+    border-color: $color-red-md;
+    color: $color-red-dark;
+
+    &::before {
+      content: "Unfollow";
+    }
+  }
+
+  &::before {
+    content: "Following";
+  }
+}

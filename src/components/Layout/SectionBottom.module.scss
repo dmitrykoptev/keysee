@@ -1,0 +1,10 @@
+@import "../../styles/variables.scss";
+
+.sectionBottom {
+  height: 7rem;
+  border-top: 1px solid $color-grey-md;
+
+  @include respond(phone) {
+    height: 11rem;
+  }
+}

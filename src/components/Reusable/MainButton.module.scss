@@ -1,0 +1,27 @@
+@import "../../styles/variables.scss";
+
+.mainButton {
+  width: 28.4rem;
+  height: 3.8rem;
+  background-color: $color-primary;
+  border: none;
+  border-radius: 3rem;
+  font-size: $font-size-default;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover,
+  &:active {
+    background-color: $color-primary-hover;
+  }
+
+  &:disabled {
+    background-color: $color-grey-md;
+    color: $color-grey-dark;
+    cursor: not-allowed;
+  }
+}

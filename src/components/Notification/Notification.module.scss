@@ -1,0 +1,62 @@
+@import "../../styles/variables.scss";
+
+.notification {
+  width: fit-content;
+  height: 4rem;
+  z-index: 100;
+  background-color: $color-grey-dark;
+  border-radius: 3rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 6rem;
+  align-items: center;
+  position: absolute;
+  top: 8vh;
+  left: 50vw;
+  transform: translateX(-50%);
+
+  p {
+    font-size: $font-size-default;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+}
+
+.error {
+  background-color: #9b020285;
+}
+
+.success {
+  background-color: #02c162b0;
+}
+
+.loaded {
+  background-color: #5c83f7ba;
+}
+
+.ModalOpen {
+  animation: openModal 0.2s ease-in forwards;
+}
+
+.ModalClosed {
+  animation: closeModal 0.4s ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

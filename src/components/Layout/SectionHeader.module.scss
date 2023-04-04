@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+
+.sectionHeader {
+  height: 5rem;
+
+  @include respond(phone) {
+    display: none;
+  }
+}

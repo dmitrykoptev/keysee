@@ -1,0 +1,10 @@
+@import "../../styles/variables.scss";
+
+.noKeys {
+  font-size: $font-size-large;
+  color: $color-grey-dark;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}

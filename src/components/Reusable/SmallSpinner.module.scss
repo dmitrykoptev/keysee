@@ -1,0 +1,23 @@
+.spin {
+  position: absolute;
+  top: 8vh;
+  left: 50vw;
+  transform: translateX(-50%);
+}
+
+.spinner {
+  background: url(../../icons/loadingSmall.svg) no-repeat center;
+  width: 5rem;
+  height: 5rem;
+  opacity: 0.6;
+  animation: spinner 1.2s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

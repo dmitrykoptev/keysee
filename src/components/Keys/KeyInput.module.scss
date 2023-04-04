@@ -1,0 +1,49 @@
+@import "../../styles/variables.scss";
+
+.keyForm {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  input {
+    height: 3.8rem;
+    width: 99%;
+    padding: 0 1.4rem;
+    color: $color-black;
+    background-color: $color-grey-light;
+    border-radius: 3rem;
+    border: none;
+    outline: none;
+
+    &:active,
+    &:focus {
+      box-shadow: 0 0 1px 1px #e6e6e6 inset;
+    }
+
+    &::placeholder {
+      background: url(../../icons/addKey.svg) no-repeat;
+      background-position-y: 0.14rem;
+      padding-left: 1.6rem;
+      color: $color-grey-dark;
+      font-size: $font-size-default;
+    }
+
+    &:focus::-webkit-input-placeholder {
+      color: transparent;
+      background: none;
+    }
+    &:focus:-moz-placeholder {
+      color: transparent;
+      background: none;
+    } /* FireFox 4-18 */
+    &:focus::-moz-placeholder {
+      color: transparent;
+      background: none;
+    } /* FireFox 19+ */
+    &:focus:-ms-input-placeholder {
+      color: transparent;
+      background: none;
+    } /* Internet Explorer 10+ */
+  }
+}

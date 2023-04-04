@@ -1,0 +1,65 @@
+@import "../../styles/variables.scss";
+
+.tweet {
+  padding: 1rem 1.4rem 1rem 0.2rem;
+  display: flex;
+  column-gap: 0.4rem;
+  border-bottom: 1px solid $color-grey-md;
+
+  &__avatar {
+    width: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    margin-left: 0.6rem;
+    padding: 0.2rem 0;
+
+    .tweetInfo {
+      display: flex;
+      align-items: center;
+      column-gap: 0.4rem;
+      margin-bottom: 0.4rem;
+
+      &__name {
+        font-size: $font-size-default;
+        font-weight: 700;
+        color: $color-black;
+      }
+
+      &__handle {
+        font-size: $font-size-small;
+        font-weight: 400;
+        color: $color-grey-dark;
+      }
+    }
+
+    p {
+      max-width: 38.8vw;
+      font-size: $font-size-default;
+      font-weight: 400;
+      color: $color-black;
+      overflow-wrap: break-word;
+
+      @include respond(phone) {
+        max-width: 80vw;
+      }
+    }
+  }
+}
+
+.visitOriginal {
+  background: url(../../icons/twitter.svg) no-repeat center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover,
+  &:active {
+    opacity: 0.7;
+  }
+}

@@ -1,0 +1,106 @@
+@import "../../styles/variables.scss";
+
+.container {
+  width: 100vw;
+  max-width: 200rem;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    max-width: 36rem;
+    padding: 3.6rem 3.4rem;
+    border: 0.1rem solid $color-grey-md;
+    border-radius: 3rem;
+    color: $color-black;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  }
+}
+
+.newUser {
+  display: flex;
+  font-size: $font-size-small;
+  font-weight: 500;
+  margin-left: 1.4rem;
+
+  span {
+    color: $color-primary;
+    margin-left: 0.4rem;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: $color-primary-hover;
+      text-decoration: underline;
+    }
+  }
+}
+
+.stayLoggedIn {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  margin-left: 1.4rem;
+  font-size: $font-size-small;
+  font-weight: 500;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+
+  &--checkBox {
+    background: url(../../icons/checkBox.svg) no-repeat center;
+  }
+
+  &--checkedBox {
+    background: url(../../icons/checkedBox.svg) no-repeat center;
+  }
+}
+
+.forgotPassword {
+  font-size: $font-size-small;
+  font-weight: 400;
+  color: $color-primary;
+  margin-left: 1.4rem;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    color: $color-primary-hover;
+    text-decoration: underline;
+  }
+}
+
+.mainLogo {
+  width: 6.3rem;
+  position: absolute;
+  bottom: 4rem;
+  cursor: pointer;
+}
+
+.errorText {
+  font-size: $font-size-small;
+  margin-left: 1.4rem;
+  color: $color-red-dark;
+}
+
+.sucessReg {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $color-primary;
+  text-align: center;
+}

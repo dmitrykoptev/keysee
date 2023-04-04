@@ -1,0 +1,62 @@
+@import "../../styles/variables.scss";
+
+.followingForm {
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  input {
+    height: 3.8rem;
+    width: 100%;
+    padding: 0 30% 0 5%;
+    color: $color-black;
+    background-color: $color-grey-light;
+    border-radius: 3rem;
+    border: none;
+    outline: none;
+
+    &:active,
+    &:focus {
+      box-shadow: 0 0 1px 1px $color-grey-md inset;
+    }
+
+    &::placeholder {
+      color: $color-grey-dark;
+      font-size: $font-size-default;
+    }
+
+    &:focus::-webkit-input-placeholder {
+      color: transparent;
+    }
+    &:focus:-moz-placeholder {
+      color: transparent;
+    } /* FireFox 4-18 */
+    &:focus::-moz-placeholder {
+      color: transparent;
+    } /* FireFox 19+ */
+    &:focus:-ms-input-placeholder {
+      color: transparent;
+    } /* Internet Explorer 10+ */
+  }
+
+  &__button {
+    height: 3.8rem;
+    width: 25%;
+    color: #fff;
+    font-size: $font-size-default;
+    font-weight: 800;
+    background-color: $color-primary;
+    border: none;
+    border-radius: 3rem;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover,
+    &:active {
+      background-color: $color-primary-hover;
+    }
+  }
+}

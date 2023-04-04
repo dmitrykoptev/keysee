@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.sectionWrapper {
+  height: 92.6vh;
+  padding: 0 1.4rem;
+  border-right: 0.1rem solid $color-grey-md;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}

@@ -1,0 +1,13 @@
+@import "../../styles/variables.scss";
+
+.startButton {
+  height: 7rem;
+  display: flex;
+  align-items: center;
+
+  button {
+    margin: 0;
+    width: 99%;
+    font-size: $font-size-large;
+  }
+}

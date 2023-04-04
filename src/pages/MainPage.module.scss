@@ -1,0 +1,22 @@
+@import "../styles/variables.scss";
+
+.bigScreen {
+  display: block;
+  margin: 0 auto;
+  border-left: 1px solid $color-grey-md;
+
+  display: grid;
+  grid-template-columns: 3fr 5fr 3fr;
+
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+.smallScreen {
+  display: none;
+
+  @include respond(phone) {
+    display: block;
+  }
+}

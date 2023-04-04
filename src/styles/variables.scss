@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+$manrope-font: "Manrope", sans-serif;
+
+// COLORS
+$color-primary: #5c84f7;
+$color-primary-hover: #4572f2;
+
+$color-red-dark: #fa324b;
+$color-red-md: #fac5cc;
+$color-red-light: #f9eaec;
+
+$color-black: #151515;
+
+$color-grey-dark: #9a9a9a;
+$color-grey-md: #e6e6e6;
+$color-grey-light: #f7f7f7;
+
+// TYPOGRAPHY
+$font-size-default: 1.4rem;
+$font-size-large: 1.6rem;
+$font-size-small: 1.2rem;
+
+// MEDIA QUERY MANAGER
+/*
+0 - 700px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+1em = 16px
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 43.75em) {
+      @content;
+    } //700px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
