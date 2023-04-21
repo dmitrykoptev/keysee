@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./FollowingButton.module.scss";
-import { deleteAccount } from "../../store/Accounts/accounts-actions";
+import { deleteAccount } from "../../store/Accounts/accountsActions";
 import { useAppDispatch } from "../../hooks/ts-hooks";
 
 interface IFollowingButtonProps {
@@ -11,7 +11,7 @@ const FollowingButton = ({ id }: IFollowingButtonProps) => {
   const dispatch = useAppDispatch();
 
   const buttonClickHandler = () => {
-    dispatch(deleteAccount(id));
+    dispatch(deleteAccount({ dispatch, id }));
   };
 
   return (

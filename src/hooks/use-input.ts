@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { authActions } from "../store/Authetication/auth";
+import { authActions } from "../store/Authetication/authSlice";
 import { useAppDispatch } from "./ts-hooks";
 
 const useInput = (validateValue: (x: string) => boolean) => {

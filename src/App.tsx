@@ -3,7 +3,7 @@ import LoadingSpinner from "./components/Reusable/LoadingSpinner";
 import LoginPage from "./pages/LoginPage";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useAppSelector } from "./hooks/ts-hooks";
-import { authTokenSelector } from "./store/Authetication/auth-selectors";
+import { authTokenSelector } from "./store/Authetication/authSelectors";
 
 const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
 const MainPage = React.lazy(() => import("./pages/MainPage"));

@@ -3,10 +3,10 @@ import classes from "./FollowingsList.module.scss";
 import Content from "../Layout/Content";
 import TwitterAccount from "./TwitterAccount";
 import { useAppSelector } from "../../hooks/ts-hooks";
-import { accountsSelector } from "../../store/Accounts/accounts-selectors";
+import { accountsListSelector } from "../../store/Accounts/accountsSelectors";
 
 const FollowingsList = () => {
-  const accounts = useAppSelector(accountsSelector);
+  const accounts = useAppSelector(accountsListSelector);
 
   return (
     <Content>

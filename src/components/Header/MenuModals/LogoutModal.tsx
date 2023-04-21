@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./LogoutModal.module.scss";
-import { useAppDispatch } from "../../../hooks/ts-hooks";
-import { authActions } from "../../../store/Authetication/auth";
-import { modalActions } from "../../../store/Modals/modals";
-import MainButton from "../../Reusable/MainButton";
-import Modal from "../../Reusable/Modal";
+import { useAppDispatch } from "../../../../../ts-keysee/src/hooks/ts-hooks";
+import { authActions } from "../../../../../ts-keysee/src/store/Authetication/authSlice";
+import { modalActions } from "../../../store/Modals/modalsSlice";
+import MainButton from "../../../../../ts-keysee/src/components/Reusable/MainButton";
+import Modal from "../../../../../ts-keysee/src/components/Reusable/Modal";
 
 interface ILogoutModalProps {
   show: boolean;
@@ -20,7 +20,7 @@ const LogoutModal = ({ show }: ILogoutModalProps) => {
   return (
     <Modal modalType="logout" show={show}>
       <div className={classes.container}>
-        <span className={classes.title}>Do you want to log out?</span>
+        <div className={classes.title}>Do you want to log out?</div>
         <MainButton title="Log Out" onClick={logoutHandler} />
       </div>
     </Modal>

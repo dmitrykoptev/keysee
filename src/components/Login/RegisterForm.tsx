@@ -1,23 +1,24 @@
-import React, { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import classes from "./AuthForm.module.scss";
 import logoMain from "../../images/LogoMain.png";
 import useInput from "../../hooks/use-input";
 import MainButton from "../Reusable/MainButton";
 import PasswordInput from "../Reusable/PasswordInput";
-import SmallSpinner from "../Reusable/SmallSpinner";
+import LoadingSpinner from "../Reusable/LoadingSpinner";
 import { useHistory } from "react-router-dom";
-import { authActions } from "../../store/Authetication/auth";
-import { signupFunction } from "../../store/Authetication/auth-actions";
-import { isErrorSelector } from "../../store/Authetication/auth-selectors";
-import { showSpinnerSelector } from "../../store/Spinner/spinner-selectors";
+import { authActions } from "../../store/Authetication/authSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/ts-hooks";
+import { authFuction } from "../../store/Authetication/authActions";
+import {
+  authIsLoadingSelector,
+  authIsErrorSelector,
+} from "../../store/Authetication/authSelectors";
 
 const LoginForm = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
-  const isError = useAppSelector(isErrorSelector);
-  const showSpinner = useAppSelector(showSpinnerSelector);
-  const [regComplete, setRegComplete] = useState(false);
+  const isError = useAppSelector(authIsErrorSelector);
+  const showSpinner = useAppSelector(authIsLoadingSelector);
 
   const {
     value: enteredEmail,
@@ -53,8 +54,9 @@ const LoginForm = () => {
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const funcType = "register";
 
-    dispatch(signupFunction({ enteredEmail, enteredPassword, setRegComplete }));
+    dispatch(authFuction({ funcType, enteredEmail, enteredPassword }));
 
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
@@ -73,10 +75,9 @@ const LoginForm = () => {
 
   return (
     <>
-      {showSpinner && <SmallSpinner />}
-      <div className={classes.container}>
-        <form onSubmit={submitHandler}>
-          {!regComplete && (
+      {!showSpinner ? (
+        <div className={classes.container}>
+          <form onSubmit={submitHandler}>
             <>
               <h1>Sign Up</h1>
               <div className={classes.newUser}>
@@ -116,17 +117,14 @@ const LoginForm = () => {
                 disabled={!formIsValid}
               />
             </>
-          )}
-          {regComplete && (
-            <span className={classes.sucessReg}>
-              Congratulations!
-              <br />
-              You have been successfully registered!
-            </span>
-          )}
-        </form>
-        <img src={logoMain} alt="keysee" className={classes.mainLogo} />
-      </div>
+          </form>
+          <img src={logoMain} alt="keysee" className={classes.mainLogo} />
+        </div>
+      ) : (
+        <div className="centered">
+          <LoadingSpinner />
+        </div>
+      )}
     </>
   );
 };

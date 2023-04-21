@@ -7,7 +7,7 @@ import { useAppSelector } from "../../hooks/ts-hooks";
 import {
   loadingTweetsSelector,
   tweetsSelector,
-} from "../../store/Tweets/tweets-selectors";
+} from "../../store/Tweets/tweetsSelectors";
 
 const TweetsList = () => {
   const tweets = useAppSelector(tweetsSelector);

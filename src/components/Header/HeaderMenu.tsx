@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./HeaderMenu.module.scss";
-import { modalActions } from "../../store/Modals/modals";
+import { modalActions } from "../../store/Modals/modalsSlice";
 import { CSSTransition } from "react-transition-group";
-import { useAppDispatch } from "../../hooks/ts-hooks";
+import { useAppDispatch } from "../../../../ts-keysee/src/hooks/ts-hooks";
 
 interface IHeaderMenuProps {
   show: boolean;

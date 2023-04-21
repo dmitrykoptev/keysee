@@ -1,12 +1,12 @@
 import React, { FormEvent } from "react";
-import { useAppDispatch } from "../../../hooks/ts-hooks";
-import useInput from "../../../hooks/use-input";
+import { useAppDispatch } from "../../../../../ts-keysee/src/hooks/ts-hooks";
+import useInput from "../../../../../ts-keysee/src/hooks/use-input";
 import classes from "./ChangePasswordModal.module.scss";
-import { modalActions } from "../../../store/Modals/modals";
-import { callNotification } from "../../../store/Notification/notification-actions";
-import MainButton from "../../Reusable/MainButton";
-import Modal from "../../Reusable/Modal";
-import PasswordInput from "../../Reusable/PasswordInput";
+import { modalActions } from "../../../store/Modals/modalsSlice";
+import { callNotification } from "../../../store/Notification/notificationActions";
+import MainButton from "../../../../../ts-keysee/src/components/Reusable/MainButton";
+import Modal from "../../../../../ts-keysee/src/components/Reusable/Modal";
+import PasswordInput from "../../../../../ts-keysee/src/components/Reusable/PasswordInput";
 
 interface IChangePasswordModalProps {
   show: boolean;

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import classes from "./Modal.module.scss";
 import { CSSTransition } from "react-transition-group";
-import { modalActions } from "../../store/Modals/modals";
+import { modalActions } from "../../store/Modals/modalsSlice";
 import { useAppDispatch } from "../../hooks/ts-hooks";
 
 interface IModalProps {

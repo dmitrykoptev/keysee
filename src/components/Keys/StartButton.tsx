@@ -1,17 +1,16 @@
-import React from "react";
 import classes from "./StartButton.module.scss";
 import SectionBottom from "../Layout/SectionBottom";
 import MainButton from "../Reusable/MainButton";
-import { fetchTweetsData } from "../../store/Tweets/tweets-actions";
-import { loadingTweetsSelector } from "../../store/Tweets/tweets-selectors";
+import { loadingTweetsSelector } from "../../store/Tweets/tweetsSelectors";
 import { useAppDispatch, useAppSelector } from "../../hooks/ts-hooks";
+import { fetchTweets } from "../../store/Tweets/tweetsActions";
 
 const StartButton = () => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(loadingTweetsSelector);
 
   const getTweets = () => {
-    dispatch(fetchTweetsData());
+    dispatch(fetchTweets(dispatch));
   };
 
   return (

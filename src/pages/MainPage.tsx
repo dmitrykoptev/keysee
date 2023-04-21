@@ -6,36 +6,42 @@ import TweetsSection from "../components/Tweets/TweetsSection";
 import KeySection from "../components/Keys/KeySection";
 import Notification from "../components/Notification/Notification";
 import SmallSpinner from "../components/Reusable/SmallSpinner";
-import { fetchKeysData } from "../store/Keys/keys-actions";
-import { fetchAccountsData } from "../store/Accounts/accounts-actions";
-import { fetchLastResult } from "../store/Tweets/tweets-actions";
+import { fetchLastResult } from "../store/Tweets/tweetsActions";
 import { useAppDispatch, useAppSelector } from "../hooks/ts-hooks";
-import { showSpinnerSelector } from "../store/Spinner/spinner-selectors";
 import {
   notificationSelector,
   showNotificationSelector,
-} from "../store/Notification/notification-selectors";
+} from "../store/Notification/notificationSelectors";
 import Tabs from "../components/Layout/Tabs";
+import { fetchKeys } from "../store/Keys/keysActions";
+import { keysIsLoadingSelector } from "../store/Keys/keysSelectors";
+import { fetchAccounts } from "../store/Accounts/accountsActions";
+import { accountsIsLoadingSelector } from "../store/Accounts/accountsSelectors";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
   const notification = useAppSelector(notificationSelector);
-  const showSpinner = useAppSelector(showSpinnerSelector);
+  // добавить селекторы для всех остальных редьюсеров, которые дергают малый спиннер
+  // и вывести в одну переменную
+  const keysLoading = useAppSelector(keysIsLoadingSelector);
+  const accountsLoading = useAppSelector(accountsIsLoadingSelector);
   const showNotification = useAppSelector(showNotificationSelector);
+
+  let showLoading = keysLoading || accountsLoading;
 
   // *** KEYS ***
   useEffect(() => {
-    dispatch(fetchKeysData());
+    dispatch(fetchKeys(dispatch));
   }, [dispatch]);
 
   // *** ACCOUNTS ***
   useEffect(() => {
-    dispatch(fetchAccountsData());
+    dispatch(fetchAccounts(dispatch));
   }, [dispatch]);
 
   // *** LAST TWEETS ***
   useEffect(() => {
-    dispatch(fetchLastResult());
+    dispatch(fetchLastResult(dispatch));
   }, [dispatch]);
 
   return (
@@ -45,7 +51,7 @@ const MainPage = () => {
         status={notification.status}
         message={notification.message}
       />
-      {showSpinner && <SmallSpinner />}
+      {showLoading && <SmallSpinner />}
       <MainHeader />
       <main>
         <div className={classes.bigScreen}>

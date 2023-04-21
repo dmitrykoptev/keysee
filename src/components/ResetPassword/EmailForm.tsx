@@ -4,7 +4,7 @@ import logoMain from "../../images/LogoMain.png";
 import useInput from "../../hooks/use-input";
 import MainButton from "../Reusable/MainButton";
 import { useHistory } from "react-router-dom";
-import { callNotification } from "../../store/Notification/notification-actions";
+import { callNotification } from "../../store/Notification/notificationActions";
 import { useAppDispatch } from "../../hooks/ts-hooks";
 
 const EmailForm = () => {

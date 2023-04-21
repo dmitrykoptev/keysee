@@ -6,12 +6,12 @@ import MainButton from "../Reusable/MainButton";
 import PasswordInput from "../Reusable/PasswordInput";
 import Notification from "../Notification/Notification";
 import { useHistory } from "react-router-dom";
-import { callNotification } from "../../store/Notification/notification-actions";
+import { callNotification } from "../../store/Notification/notificationActions";
 import { useAppDispatch, useAppSelector } from "../../hooks/ts-hooks";
 import {
   notificationSelector,
   showNotificationSelector,
-} from "../../store/Notification/notification-selectors";
+} from "../../store/Notification/notificationSelectors";
 
 const ResetPassword = () => {
   const dispatch = useAppDispatch();

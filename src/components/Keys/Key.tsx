@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Key.module.scss";
-import { deleteKey } from "../../store/Keys/keys-actions";
+import { deleteKey } from "../../store/Keys/keysActions";
 import { useAppDispatch } from "../../hooks/ts-hooks";
 
 interface IKeyProps {
@@ -12,7 +12,7 @@ const Key = ({ id, keyContent }: IKeyProps) => {
   const dispatch = useAppDispatch();
 
   const removeKeyHandler = () => {
-    dispatch(deleteKey(id));
+    dispatch(deleteKey({ dispatch, id }));
   };
 
   return (

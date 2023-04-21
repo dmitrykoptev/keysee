@@ -1,14 +1,17 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { authFuction } from "./authActions";
 
 interface IInitialState {
   token: string | null;
   error: string | null;
+  isLoading: boolean;
   rememberMe: boolean;
 }
 
 const initialState: IInitialState = {
   token: localStorage.getItem("token"),
   error: null,
+  isLoading: false,
   rememberMe: true,
 };
 
@@ -16,14 +19,6 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logIn(state, action: PayloadAction<string>) {
-      localStorage.setItem("token", action.payload);
-      return {
-        ...state,
-        token: action.payload,
-      };
-    },
-
     logOut(state) {
       localStorage.removeItem("token");
       return {
@@ -40,20 +35,29 @@ const authSlice = createSlice({
       };
     },
 
-    showError(state, action: PayloadAction<string>) {
-      const message = action.payload;
-      return {
-        ...state,
-        error: message,
-      };
-    },
-
     removeError(state) {
       return {
         ...state,
         error: null,
       };
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(authFuction.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(authFuction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.token = action.payload.access_token;
+        if (action.payload.access_token !== undefined) {
+          localStorage.setItem("token", action.payload.access_token);
+        }
+      })
+      .addCase(authFuction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 

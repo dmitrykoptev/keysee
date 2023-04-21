@@ -1,13 +1,13 @@
 import React, { FormEvent, useRef } from "react";
 import classes from "./KeyInput.module.scss";
-import { addKey } from "../../store/Keys/keys-actions";
-import { callNotification } from "../../store/Notification/notification-actions";
-import { keysSelector } from "../../store/Keys/keys-selectors";
+import { addKey } from "../../store/Keys/keysActions";
+import { callNotification } from "../../store/Notification/notificationActions";
+import { keysListSelector } from "../../store/Keys/keysSelectors";
 import { useAppDispatch, useAppSelector } from "../../hooks/ts-hooks";
 
 const KeyInput = () => {
   const dispatch = useAppDispatch();
-  const keys = useAppSelector(keysSelector);
+  const keys = useAppSelector(keysListSelector);
   const inputEl = useRef<HTMLInputElement>(null);
 
   const reset = () => {
@@ -34,7 +34,7 @@ const KeyInput = () => {
       return;
     }
     if (inputKey !== "") {
-      dispatch(addKey(inputKey));
+      dispatch(addKey({ dispatch, inputKey }));
       reset();
     }
 

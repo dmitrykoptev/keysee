@@ -3,11 +3,11 @@ import classes from "./Keys.module.scss";
 import Content from "../Layout/Content";
 import KeysList from "./KeysList";
 import KeyInput from "./KeyInput";
-import { keysSelector } from "../../store/Keys/keys-selectors";
+import { keysListSelector } from "../../store/Keys/keysSelectors";
 import { useAppSelector } from "../../hooks/ts-hooks";
 
 const Keys = () => {
-  const keys = useAppSelector(keysSelector);
+  const keys = useAppSelector(keysListSelector);
 
   return (
     <Content>

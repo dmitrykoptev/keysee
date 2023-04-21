@@ -1,14 +1,14 @@
 import React, { FormEvent, useRef } from "react";
 import classes from "./FollowingInput.module.scss";
 import SectionBottom from "../Layout/SectionBottom";
-import { addAccount } from "../../store/Accounts/accounts-actions";
-import { callNotification } from "../../store/Notification/notification-actions";
-import { accountsSelector } from "../../store/Accounts/accounts-selectors";
+import { addAccount } from "../../store/Accounts/accountsActions";
+import { callNotification } from "../../store/Notification/notificationActions";
+import { accountsListSelector } from "../../store/Accounts/accountsSelectors";
 import { useAppDispatch, useAppSelector } from "../../hooks/ts-hooks";
 
 const AddTwitter = () => {
   const dispatch = useAppDispatch();
-  const accounts = useAppSelector(accountsSelector);
+  const accounts = useAppSelector(accountsListSelector);
   const inputEl = useRef<HTMLInputElement>(null);
 
   const reset = () => {
@@ -41,7 +41,7 @@ const AddTwitter = () => {
         )
       );
     } else {
-      dispatch(addAccount(inputHandle));
+      dispatch(addAccount({ dispatch, inputHandle }));
     }
 
     reset();

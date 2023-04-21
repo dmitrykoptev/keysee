@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./Authetication/auth";
-import accountsReducer from "./Accounts/accounts";
-import keysReducer from "./Keys/keys";
-import tweetsReducer from "./Tweets/tweets";
-import modalsReducer from "./Modals/modals";
-import notificationReducer from "./Notification/notification";
-import spinnerReducer from "./Spinner/spinner";
+import authReducer from "./Authetication/authSlice";
+import accountsReducer from "./Accounts/accountsSlice";
+import keysReducer from "./Keys/keysSlice";
+import tweetsReducer from "./Tweets/tweetsSlice";
+import modalsReducer from "./Modals/modalsSlice";
+import notificationReducer from "./Notification/notificationSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,7 +14,6 @@ const store = configureStore({
     tweetsList: tweetsReducer,
     modals: modalsReducer,
     notification: notificationReducer,
-    spinner: spinnerReducer,
   },
 });
 

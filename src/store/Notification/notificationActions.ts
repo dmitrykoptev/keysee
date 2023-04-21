@@ -1,5 +1,5 @@
 import { AppDispatch } from "../store";
-import { notificationActions } from "./notification";
+import { notificationActions } from "./notificationSlice";
 
 export const callNotification = (status: string, message: string) => {
   return (dispatch: AppDispatch) => {
