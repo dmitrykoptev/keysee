@@ -16,10 +16,16 @@
   transform: translateX(-50%);
 
   p {
+    text-align: center;
     font-size: $font-size-default;
     font-weight: 700;
     color: #fff;
     margin: 0;
+  }
+
+  @include respond(phone) {
+    height: fit-content;
+    width: 80vw;
   }
 }
 

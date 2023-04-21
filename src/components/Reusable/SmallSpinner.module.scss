@@ -1,8 +1,15 @@
+@import "../../styles/variables.scss";
+
 .spin {
   position: absolute;
   top: 8vh;
   left: 50vw;
   transform: translateX(-50%);
+
+  @include respond(phone) {
+    top: 12vh;
+    z-index: 100;
+  }
 }
 
 .spinner {
