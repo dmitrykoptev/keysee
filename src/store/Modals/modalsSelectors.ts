@@ -7,3 +7,5 @@ export const showChangeEmailModalSelector = (state: RootState) =>
   state.modals.showChangeEmailModal;
 export const showChangePasswordModalSelector = (state: RootState) =>
   state.modals.showChangePasswordModal;
+export const showMessageModalSelector = (state: RootState) =>
+  state.modals.showMessageModal;

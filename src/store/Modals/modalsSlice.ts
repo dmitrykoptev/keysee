@@ -5,6 +5,7 @@ interface IInitialState {
   showLogoutModal: boolean;
   showChangeEmailModal: boolean;
   showChangePasswordModal: boolean;
+  showMessageModal: boolean;
 }
 
 const initialState: IInitialState = {
@@ -12,6 +13,7 @@ const initialState: IInitialState = {
   showLogoutModal: false,
   showChangeEmailModal: false,
   showChangePasswordModal: false,
+  showMessageModal: false,
 };
 
 const modalsSlice = createSlice({
@@ -51,13 +53,20 @@ const modalsSlice = createSlice({
         showChangePasswordModal: true,
       };
     },
-
+    openMessageModal(state) {
+      return {
+        ...state,
+        showMenu: false,
+        showMessageModal: true,
+      };
+    },
     closeModal(state) {
       return {
         ...state,
         showLogoutModal: false,
         showChangeEmailModal: false,
         showChangePasswordModal: false,
+        showMessageModal: false,
       };
     },
   },

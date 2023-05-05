@@ -4,6 +4,7 @@ import MainButton from "../Reusable/MainButton";
 import { loadingTweetsSelector } from "../../store/Tweets/tweetsSelectors";
 import { useAppDispatch, useAppSelector } from "../../hooks/ts-hooks";
 import { fetchTweets } from "../../store/Tweets/tweetsActions";
+import { modalActions } from "../../store/Modals/modalsSlice";
 
 const StartButton = () => {
   const dispatch = useAppDispatch();
@@ -13,12 +14,16 @@ const StartButton = () => {
     dispatch(fetchTweets(dispatch));
   };
 
+  const showModal = () => {
+    dispatch(modalActions.openMessageModal());
+  };
+
   return (
     <SectionBottom>
       <div className={classes.startButton}>
         <MainButton
           title="Start Search"
-          onClick={getTweets}
+          onClick={showModal}
           disabled={isLoading}
         />
       </div>

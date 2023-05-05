@@ -16,7 +16,9 @@ import {
   showChangePasswordModalSelector,
   showLogoutModalSelector,
   showMenuSelector,
+  showMessageModalSelector,
 } from "../../store/Modals/modalsSelectors";
+import MessageModal from "./MenuModals/MessageModal";
 
 const MainHeader = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +26,7 @@ const MainHeader = () => {
   const showLogout = useAppSelector(showLogoutModalSelector);
   const showChangeEmail = useAppSelector(showChangeEmailModalSelector);
   const showChangePassword = useAppSelector(showChangePasswordModalSelector);
+  const showMessage = useAppSelector(showMessageModalSelector);
 
   const menuActiveHandler = () => {
     !menuActive
@@ -50,6 +53,7 @@ const MainHeader = () => {
       <LogoutModal show={showLogout} />
       <ChangeEmailModal show={showChangeEmail} />
       <ChangePasswordModal show={showChangePassword} />
+      <MessageModal show={showMessage} />
     </>
   );
 };
