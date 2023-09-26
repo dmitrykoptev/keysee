@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./LogoutModal.module.scss";
-import { useAppDispatch } from "../../../../../ts-keysee/src/hooks/ts-hooks";
+import { useAppDispatch } from "../../../hooks/ts-hooks";
 import { modalActions } from "../../../store/Modals/modalsSlice";
-import MainButton from "../../../../../ts-keysee/src/components/Reusable/MainButton";
-import Modal from "../../../../../ts-keysee/src/components/Reusable/Modal";
+import MainButton from "../../Reusable/MainButton";
+import Modal from "../../Reusable/Modal";
 
 interface IMessageModalProps {
   show: boolean;

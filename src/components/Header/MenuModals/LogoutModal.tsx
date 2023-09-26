@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./LogoutModal.module.scss";
-import { useAppDispatch } from "../../../../../ts-keysee/src/hooks/ts-hooks";
-import { authActions } from "../../../../../ts-keysee/src/store/Authetication/authSlice";
+import { useAppDispatch } from "../../../hooks/ts-hooks";
 import { modalActions } from "../../../store/Modals/modalsSlice";
-import MainButton from "../../../../../ts-keysee/src/components/Reusable/MainButton";
-import Modal from "../../../../../ts-keysee/src/components/Reusable/Modal";
+import { authActions } from "../../../store/Authetication/authSlice";
+import MainButton from "../../Reusable/MainButton";
+import Modal from "../../Reusable/Modal";
 
 interface ILogoutModalProps {
   show: boolean;

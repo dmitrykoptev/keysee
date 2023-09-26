@@ -1,12 +1,12 @@
 import React, { FormEvent } from "react";
 import classes from "./ChangePasswordModal.module.scss";
-import useInput from "../../../../../ts-keysee/src/hooks/use-input";
-import { useAppDispatch } from "../../../../../ts-keysee/src/hooks/ts-hooks";
+import { useAppDispatch } from "../../../hooks/ts-hooks";
 import { modalActions } from "../../../store/Modals/modalsSlice";
 import { callNotification } from "../../../store/Notification/notificationActions";
-import MainButton from "../../../../../ts-keysee/src/components/Reusable/MainButton";
-import Modal from "../../../../../ts-keysee/src/components/Reusable/Modal";
-import EmailInput from "../../../../../ts-keysee/src/components/Reusable/PasswordInput";
+import useInput from "../../../hooks/use-input";
+import Modal from "../../Reusable/Modal";
+import EmailInput from "../../Reusable/PasswordInput";
+import MainButton from "../../Reusable/MainButton";
 
 interface IChangeEmailModalProps {
   show: boolean;

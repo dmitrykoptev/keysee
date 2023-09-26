@@ -7,10 +7,7 @@ import LogoutModal from "./MenuModals/LogoutModal";
 import ChangeEmailModal from "./MenuModals/CnahgeEmailModal";
 import ChangePasswordModal from "./MenuModals/ChangePasswordModal";
 import { modalActions } from "../../store/Modals/modalsSlice";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../../ts-keysee/src/hooks/ts-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/ts-hooks";
 import {
   showChangeEmailModalSelector,
   showChangePasswordModalSelector,
