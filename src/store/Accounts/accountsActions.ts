@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AppDispatch } from "../store";
 import { callNotification } from "../Notification/notificationActions";
+import { IAccount } from "../../models/account";
 
 export const fetchAccounts = createAsyncThunk(
   "fetchAccounts",
@@ -18,7 +19,7 @@ export const fetchAccounts = createAsyncThunk(
         throw new Error("Fetching accounts failed ...");
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as IAccount[];
       return data;
     } catch (error: any) {
       dispatch(callNotification("error", error.message));
@@ -51,7 +52,7 @@ export const addAccount = createAsyncThunk(
         throw new Error("Adding account failed ...");
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as IAccount[];
       return data;
     } catch (error: any) {
       dispatch(callNotification("error", error.message));
@@ -84,9 +85,7 @@ export const deleteAccount = createAsyncThunk(
         throw new Error("Deleting account failed ...");
       }
 
-      const data = await response.json();
-      console.log(data);
-      return data;
+      dispatch(fetchAccounts(dispatch));
     } catch (error: any) {
       dispatch(callNotification("error", error.message));
       return rejectWithValue(error.message);

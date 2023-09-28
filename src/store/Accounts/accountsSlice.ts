@@ -48,9 +48,8 @@ const accountsSlice = createSlice({
       .addCase(deleteAccount.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteAccount.fulfilled, (state, action) => {
+      .addCase(deleteAccount.fulfilled, (state) => {
         state.isLoading = false;
-        state.items = action.payload;
       })
       .addCase(deleteAccount.rejected, (state, action) => {
         state.isLoading = false;

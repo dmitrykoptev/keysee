@@ -50,7 +50,6 @@ const keysSlice = createSlice({
       })
       .addCase(deleteKey.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
       })
       .addCase(deleteKey.rejected, (state, action) => {
         state.isLoading = false;

@@ -85,8 +85,7 @@ export const deleteKey = createAsyncThunk(
         throw new Error("Deleting key failed ...");
       }
 
-      const data = (await response.json()) as IKey[];
-      return data;
+      dispatch(fetchKeys(dispatch));
     } catch (error: any) {
       dispatch(callNotification("error", error.message));
       return rejectWithValue(error.message);
